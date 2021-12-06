@@ -42,7 +42,6 @@ keymap("n", "<ESC><ESC>", ":nohlsearch<CR>", opts)
 
 -- Control keys
 keymap("n", "<C-s>", ":w<CR>", opts) -- Alternative way of saving a file
-keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts) -- Toggle file tree
 keymap("n", "<C-q>", ":bd<CR>", opts) -- Close buffer
 keymap("n", "<C-o>", ":RnvimrToggle<CR>", opts) -- Toggle ranger
 keymap("n", "<C-p>", ":Telescope find_files prompt_prefix=🔍<CR>", opts) -- CTRL-P with telescope

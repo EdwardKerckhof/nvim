@@ -7,41 +7,20 @@ M.config = function ()
     return
   end
 
+  vim.g.nvim_tree_indent_markers = 1
+
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>e",
+    "<CMD>NvimTreeToggle<CR>",
+    { noremap = true, silent = true }
+  )
+
   nvimtree.setup {
-    update_cwd = false,
-    update_to_buf_dir = {
-      enable = true,
-      auto_open = true,
-    },
-    diagnostics = {
-      enable = false,
-      icons = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
-      }
-    },
-    filters = {
-      dotfiles = true,
-    },
     git = {
       enable = true,
-      ignore = false,
+      ignore = true,
       timeout = 500,
-    },
-    view = {
-      width = 30,
-      height = 30,
-      hide_root_folder = false,
-      side = 'left',
-      auto_resize = false,
-      mappings = {
-        custom_only = false,
-        list = {}
-      },
-      number = false,
-      relativenumber = false
     },
     trash = {
       cmd = "trash",

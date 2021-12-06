@@ -39,6 +39,7 @@ vim.cmd('filetype plugin indent on')
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 
 vim.opt.shortmess:append "c"
+vim.g.mapleader = " "
 
 for k, v in pairs(options) do
   vim.opt[k] = v
