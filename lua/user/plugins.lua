@@ -38,17 +38,24 @@ return packer.startup(function(use)
   use { 'nvim-lua/popup.nvim' } -- An implementation of the Popup API from vim in Neovim
   use { 'nvim-lua/plenary.nvim' } -- Useful lua functions used ny lots of plugins
   use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ":TSUpdate",
+    config = function()
+      require('lua.plugins.treesitter').config()
+    end,
+  }
+  use { -- Colorscheme
     'folke/tokyonight.nvim',
     config = function()
       require('lua.plugins.colorscheme').config()
     end,
-  } -- Colorscheme
-  use {
+  }
+  use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
     config = function ()
       require('lua.plugins.renamer').config()
     end,
-  } -- VSCode like renamer
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
