@@ -51,16 +51,10 @@ keymap("n", "<C-g>", ":w<CR>", opts) -- Open git fugitive
 keymap("n", "<C-a>", ":dial-increment<CR>", opts) -- Increment numbers
 keymap("n", "<C-x>", ":dial-decrement<CR>", opts) -- Decrement numbers
 
--- F2 to rename
-keymap("n", "<F2>", ":lua require('renamer').rename({empty = true})<CR>")
-
 -- Insert --
 -- Press jk or kj fast to enter
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
-
--- F2 to rename
-keymap("i", "<F2>", ":lua require('renamer').rename({empty = true})<CR>")
 
 -- Visual --
 -- Stay in indent mode
