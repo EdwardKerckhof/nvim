@@ -43,6 +43,12 @@ return packer.startup(function(use)
       require('lua.plugins.colorscheme').config()
     end,
   } -- Colorscheme
+  use {
+    'filipdutescu/renamer.nvim',
+    config = function ()
+      require('lua.plugins.renamer').config()
+    end,
+  } -- VSCode like renamer
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
