@@ -12,11 +12,7 @@ Open `nvim` and enter the following:
 :checkhealth
 ```
 
-You'll probably notice you don't have support for copy/paste also that python and node haven't been setup
-
-So let's fix that
-
-First we'll fix copy/paste
+Fix copy/paste
 
 - On mac `pbcopy` should be builtin
 
