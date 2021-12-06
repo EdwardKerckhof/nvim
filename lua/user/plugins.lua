@@ -86,6 +86,13 @@ return packer.startup(function(use)
     end,
     event = 'BufWinEnter'
   }
+  use { -- Telescope
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("plugins.telescope").setup()
+    end,
+  }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
     config = function ()
