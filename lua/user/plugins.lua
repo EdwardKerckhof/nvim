@@ -44,7 +44,7 @@ return packer.startup(function(use)
       require('plugins.treesitter').config()
     end,
   }
-  use { -- ine
+  use { -- Lualine
     'nvim-ine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function ()
@@ -57,11 +57,18 @@ return packer.startup(function(use)
       require('plugins.colorscheme').config()
     end,
   }
-  use {
+  use { -- Buffer status bar
     'romgrk/barbar.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function ()
       require('plugins.barbar').config()
+    end
+  }
+  use { --File tree explorer
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('plugins.nvimtree').config()
     end
   }
   use { -- VSCode like renamer

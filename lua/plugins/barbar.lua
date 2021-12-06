@@ -10,7 +10,6 @@ M.config = function ()
   bufferline.setup {
 
   }
-
 end
 
 return M
