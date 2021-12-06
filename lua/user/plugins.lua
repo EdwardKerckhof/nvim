@@ -7,11 +7,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print("Installing packer close and reopen Neovim...")
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- Autocommand that reloads neovim whenever you save the plugins.file
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins.source <afile> | PackerSync
   augroup end
 ]])
 
@@ -35,32 +35,39 @@ packer.init({
 return packer.startup(function(use)
   -- My plugins here
   use { 'wbthomason/packer.nvim' } -- Have packer manage itself
-  use { 'nvim-lua/popup.nvim' } -- An implementation of the Popup API from vim in Neovim
-  use { 'nvim-lua/plenary.nvim' } -- Useful lua functions used ny lots of plugins
+  use { 'nvim-popup.nvim' } -- An implementation of the Popup API from vim in Neovim
+  use { 'nvim-plenary.nvim' } -- Useful lua functions used ny lots of plugins
   use { -- Treesitter
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     config = function()
-      require('lua.plugins.treesitter').config()
+      require('plugins.treesitter').config()
     end,
   }
-  use { -- Lualine
-    'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  use { -- ine
+    'nvim-ine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function ()
-      require('lua.plugins.lualine').config()
+      require('plugins.lualine').config()
     end
   }
   use { -- Colorscheme
     'folke/tokyonight.nvim',
     config = function()
-      require('lua.plugins.colorscheme').config()
+      require('plugins.colorscheme').config()
     end,
+  }
+  use {
+    'romgrk/barbar.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function ()
+      require('plugins.barbar').config()
+    end
   }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
     config = function ()
-      require('lua.plugins.renamer').config()
+      require('plugins.renamer').config()
     end,
   }
 
