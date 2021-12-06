@@ -44,6 +44,7 @@ return packer.startup(function(use)
       require('plugins.treesitter').config()
     end,
   }
+  use { 'windwp/nvim-ts-autotag' } -- Html autotag/autorename
   use { -- Lualine
     'nvim-ine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
