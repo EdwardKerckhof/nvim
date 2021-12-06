@@ -66,11 +66,17 @@ return packer.startup(function(use)
       require('plugins.barbar').config()
     end
   }
-  use { --File tree explorer
+  use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('plugins.nvimtree').config()
+    end
+  }
+  use { -- Nvim autopairs
+    'windwp/nvim-autopairs',
+    config = function ()
+      require('plugins.autopairs').config()
     end
   }
   use { -- VSCode like renamer

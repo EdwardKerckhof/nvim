@@ -52,7 +52,7 @@ M.config = function ()
     },
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
     highlight = {
-      enable = true,  -- false will disable the whole extension
+      enable = true,
       additional_vim_regex_highlighting = false,
     },
     autotag = { -- nvim-ts-autotag plugin
