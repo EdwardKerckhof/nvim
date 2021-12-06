@@ -48,7 +48,7 @@ M.config = function ()
       "typescript",
       "vim",
       "vue",
-      "yaml"
+      "yaml",
     },
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
     highlight = {
@@ -56,8 +56,12 @@ M.config = function ()
       additional_vim_regex_highlighting = false,
     },
     autotag = { -- nvim-ts-autotag plugin
-      enable = true
-    }
+      enable = true,
+    },
+    rainbow = { -- nvim-ts-rainbow plugin
+      enable = true,
+      extended_mode = false,
+    },
   }
 end
 
