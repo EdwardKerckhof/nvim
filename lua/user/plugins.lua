@@ -70,7 +70,7 @@ return packer.startup(function(use)
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('plugins.nvimtree').config()
+      require('plugins.nvim-tree').config()
     end
   }
   use { -- Nvim autopairs
@@ -78,6 +78,13 @@ return packer.startup(function(use)
     config = function ()
       require('plugins.autopairs').config()
     end
+  }
+  use { -- Whichkey
+    'folke/which-key.nvim',
+    config = function ()
+      require('plugins.which-key').setup()
+    end,
+    event = 'BufWinEnter'
   }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
