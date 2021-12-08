@@ -2,30 +2,21 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
 
--- HTML
-lspconfig.html.setup {
-  capabilities = capabilities
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local langServers = {
+  'html',
+  'cssls',
+  'tsserver',
+  'pylsp',
+  'bashls'
 }
 
--- CSS
-lspconfig.cssls.setup {
-  capabilities = capabilities
-}
-
--- TS/JS
-lspconfig.tsserver.setup {
-  capabilities = capabilities
-}
-
--- Python
-lspconfig.pylsp.setup {
-  capabilities = capabilities
-}
-
--- Bash
-lspconfig.bashls.setup {
-  capabilities = capabilities
-}
+for _, server in ipairs(langServers) do
+  lspconfig[server].setup {
+    capabilities = capabilities
+  }
+end
 
 -- Lua sumneko
 local sumneko_root_path = '/home/edward/.config/nvim/lua-language-server'
@@ -62,13 +53,11 @@ lspconfig.sumneko_lua.setup {
 }
 
 -- Emmet
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 if not lspconfig.emmet_ls then
   configs.emmet_ls = {
     default_config = {
       cmd = {'emmet-ls', '--stdio'};
-      filetypes = {'html', 'css', 'scss', 'blade'};
+      filetypes = {'html', 'css', 'scss', 'blade', 'vue'};
       root_dir = function()
         return vim.loop.cwd()
       end;
