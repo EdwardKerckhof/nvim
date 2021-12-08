@@ -63,14 +63,24 @@ return packer.startup(function(use)
   use { 'hrsh7th/cmp-cmdline' }
   use { 'hrsh7th/cmp-vsnip' }
   use { 'hrsh7th/vim-vsnip' }
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'saadparwaiz1/cmp_luasnip' }
   use {
     'hrsh7th/nvim-cmp',
     config = function ()
       require('lsp.cmp').config()
+    end,
+    requires = {
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets'
+    }
+  }
+  use { 'rafamadriz/friendly-snippets' }
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function ()
+      require("luasnip/loaders/from_vscode").lazy_load()
     end
   }
+  use { 'saadparwaiz1/cmp_luasnip' }
 
   -- LSP Installer
   use { 'williamboman/nvim-lsp-installer' }
@@ -127,12 +137,24 @@ return packer.startup(function(use)
       require('plugins.comment').setup()
     end
   }
-  -- use { -- Toggleterm
-  --   'akinsho/toggleterm.nvim',
-  --   config = function()
-  --     require('plugins.terminal').setup()
-  --   end,
-  -- }
+  use { -- Colorizer
+    'norcalli/nvim-colorizer.lua',
+    config = function ()
+      require('plugins.colorizer').setup()
+    end
+  }
+  use { -- Gitsigns
+    'lewis6991/gitsigns.nvim',
+    config = function ()
+      require('plugins.gitsigns').setup()
+    end
+  }
+  use { -- Toggleterm
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('plugins.terminal').setup()
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

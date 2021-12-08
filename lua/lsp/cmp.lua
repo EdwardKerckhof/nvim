@@ -199,11 +199,6 @@ M.config = function ()
     kinds[i] = M.icons[kind] or kind
   end
 
-  local confirm_opts ={
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  }
-
   -- Automatically show line diagnostics in hover window
   vim.o.updatetime = 250
   vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

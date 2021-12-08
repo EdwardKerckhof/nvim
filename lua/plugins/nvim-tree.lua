@@ -8,6 +8,9 @@ M.config = function ()
   end
 
   vim.g.nvim_tree_indent_markers = 1
+  vim.g.nvim_tree_quit_on_open = 1
+  vim.g.nvim_tree_git_hl = 1
+  vim.g.nvim_tree_highlight_opened_files = 1
 
   vim.api.nvim_set_keymap(
     "n",
@@ -21,6 +24,19 @@ M.config = function ()
       enable = true,
       ignore = false,
       timeout = 500,
+    },
+    view = {
+      width = 30,
+      height = 30,
+      hide_root_folder = false,
+      side = 'left',
+      auto_resize = false,
+      mappings = {
+        custom_only = false,
+        list = {}
+      },
+      number = false,
+      relativenumber = false
     },
     trash = {
       cmd = "trash",
