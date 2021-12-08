@@ -1,27 +1,29 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'
 
 -- HTML
-require'lspconfig'.html.setup {
+lspconfig.html.setup {
   capabilities = capabilities
 }
 
 -- CSS
-require'lspconfig'.cssls.setup {
+lspconfig.cssls.setup {
   capabilities = capabilities
 }
 
 -- TS/JS
-require'lspconfig'.tsserver.setup {
+lspconfig.tsserver.setup {
   capabilities = capabilities
 }
 
 -- Python
-require'lspconfig'.pylsp.setup {
+lspconfig.pylsp.setup {
   capabilities = capabilities
 }
 
 -- Bash
-require'lspconfig'.bashls.setup {
+lspconfig.bashls.setup {
   capabilities = capabilities
 }
 
@@ -33,7 +35,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
   cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" };
   settings = {
     Lua = {
@@ -57,4 +59,24 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+}
+
+-- Emmet
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+if not lspconfig.emmet_ls then
+  configs.emmet_ls = {
+    default_config = {
+      cmd = {'emmet-ls', '--stdio'};
+      filetypes = {'html', 'css', 'scss', 'blade'};
+      root_dir = function()
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
+
+lspconfig.emmet_ls.setup{
+  capabilities = capabilities
 }

@@ -19,7 +19,7 @@ M.config = function ()
   nvimtree.setup {
     git = {
       enable = true,
-      ignore = true,
+      ignore = false,
       timeout = 500,
     },
     trash = {
