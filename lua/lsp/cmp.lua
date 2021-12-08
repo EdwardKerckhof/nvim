@@ -5,6 +5,34 @@ vim.g.completeopt="menu,menuone,noselect,noinsert"
 
 M.methods = {}
 
+M.icons = {
+  Class = " ",
+  Color = " ",
+  Constant = "ﲀ ",
+  Constructor = " ",
+  Enum = "練",
+  EnumMember = " ",
+  Event = " ",
+  Field = " ",
+  File = "",
+  Folder = " ",
+  Function = " ",
+  Interface = "ﰮ ",
+  Keyword = " ",
+  Method = " ",
+  Module = " ",
+  Operator = "",
+  Property = " ",
+  Reference = " ",
+  Snippet = " ",
+  Struct = " ",
+  Text = " ",
+  TypeParameter = " ",
+  Unit = "塞",
+  Value = " ",
+  Variable = " ",
+}
+
 ---checks if the character preceding the cursor is a space character
 ---@return boolean true if it is a space character, false otherwise
 local check_backspace = function()
@@ -158,6 +186,30 @@ M.config = function ()
   if not status_luasnip_ok then
     return
   end
+  local status_kind_ok, lspkind = pcall(require, "lspkind")
+  if not status_kind_ok then
+    return
+  end
+
+  local kinds = vim.lsp.protocol.CompletionItemKind
+  for i, kind in ipairs(kinds) do
+    kinds[i] = M.icons[kind] or kind
+  end
+
+  local confirm_opts ={
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  }
+
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  -- Automatically show line diagnostics in hover window
+  vim.o.updatetime = 250
+  vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
   cmp.setup({
     snippet = {
@@ -167,6 +219,15 @@ M.config = function ()
     },
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
+    formatting = {
+      format = lspkind.cmp_format({
+        with_text = true,
+        maxwidth = 50,
+        before = function (entry, vim_item)
+          return vim_item
+        end
+      })
     },
     sources = {
       { name = "nvim_lsp" },
@@ -217,22 +278,7 @@ M.config = function ()
       }),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping(function(fallback)
-        if cmp.visible() and cmp.confirm(lvim.builtin.cmp.confirm_opts) then
-          if jumpable() then
-            luasnip.jump(1)
-          end
-          return
-        end
-
-        if jumpable() then
-          if not luasnip.jump(1) then
-            fallback()
-          end
-        else
-          fallback()
-        end
-      end),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
   })
 
