@@ -121,12 +121,18 @@ return packer.startup(function(use)
       require('plugins.renamer').config()
     end,
   }
-  use { -- Toggleterm
-    'akinsho/toggleterm.nvim',
+  use { -- Commenter
+    'numToStr/Comment.nvim',
     config = function()
-      require('plugins.terminal').setup()
-    end,
+      require('plugins.comment').setup()
+    end
   }
+  -- use { -- Toggleterm
+  --   'akinsho/toggleterm.nvim',
+  --   config = function()
+  --     require('plugins.terminal').setup()
+  --   end,
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

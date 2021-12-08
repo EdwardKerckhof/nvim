@@ -1,6 +1,9 @@
 -- CMP (https://github.com/hrsh7th/nvim-cmp)
 local M = {}
 
+require('lsp/language-servers')
+require('lsp/diagnostic-signs')
+
 vim.g.completeopt="menu,menuone,noselect,noinsert"
 
 M.methods = {}
@@ -201,12 +204,6 @@ M.config = function ()
     select = false,
   }
 
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
   -- Automatically show line diagnostics in hover window
   vim.o.updatetime = 250
   vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
@@ -281,12 +278,6 @@ M.config = function ()
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
   })
-
-  -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  require'lspconfig'.html.setup {
-    capabilities = capabilities
-  }
 end
 
 return M
