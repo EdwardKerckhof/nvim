@@ -3,7 +3,7 @@ local M = {}
 local commentOpts = {}
 
 M.config = function ()
-  local status_ok, comment = pcall(require, "Comment")
+  local status_ok, _ = pcall(require, "Comment")
   if not status_ok then
     return
   end

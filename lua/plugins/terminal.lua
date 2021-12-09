@@ -28,6 +28,10 @@ M.setup = function()
         background = "Normal",
       },
     },
+    execs = {
+      { "lazygit", "<leader>gg", "LazyGit", "float" },
+      { "lazygit", "<c-\\>", "LazyGit", "float" },
+    },
   }
 end
 

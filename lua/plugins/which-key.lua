@@ -63,13 +63,13 @@ M.config = function ()
     },
     mappings = {
       ["w"] = { "<cmd>w!<CR>", "Save" },
+      ["z"] = { "<cmd>ZenMode<CR>", "Zen" },
       ["q"] = { "<cmd>q!<CR>", "Quit" },
       ["/"] = { "<cmd>lua require('Comment').toggle()<CR>", "Comment" },
       ["c"] = { "<cmd>BufferClose!<CR>", "Close Buffer" },
       ["f"] = { "<cmd>Telescope find_files<CR>", "Find File" },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["P"] = { "<cmd>Telescope projects<CR>", "Projects" },
-      ["z"] = { "<cmd>ZenMode<CR>", "Zen" },
       b = {
         name = "Buffers",
         j = { "<cmd>BufferPick<CR>", "Jump" },

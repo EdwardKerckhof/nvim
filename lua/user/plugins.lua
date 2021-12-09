@@ -125,6 +125,12 @@ return packer.startup(function(use)
       require("plugins.telescope").setup()
     end,
   }
+  use { -- FZF telescope plugin
+    'nvim-telescope/telescope-fzf-native.nvim'
+  }
+  use { -- Projects telescope plugin
+    'nvim-telescope/telescope-project.nvim'
+  }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
     config = function ()
@@ -155,6 +161,20 @@ return packer.startup(function(use)
       require('plugins.terminal').setup()
     end,
   }
+  use { -- Dashboard
+    'glepnir/dashboard-nvim',
+    config = function()
+      require('plugins.dashboard').setup()
+    end
+  }
+  use { -- Recent projects
+    'ahmedkhalf/project.nvim',
+    config = function()
+      require('plugins.project').setup()
+    end
+  }
+  use { 'tpope/vim-surround' } -- Change surroundings
+  use { 'folke/zen-mode.nvim' } -- Zen mode
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

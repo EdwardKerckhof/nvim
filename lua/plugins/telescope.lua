@@ -138,12 +138,10 @@ M.setup = function ()
   if not status_ok then
     return
   end
-  telescope.setup(localTS)
 
-  pcall(function()
-    require("telescope").load_extension "projects"
-    require("telescope").load_extension "fzf"
-  end)
+  require("telescope").load_extension("projects")
+
+  telescope.setup(localTS)
 end
 
 return M

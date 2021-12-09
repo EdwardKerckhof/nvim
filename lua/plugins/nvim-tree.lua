@@ -11,6 +11,7 @@ M.config = function ()
   vim.g.nvim_tree_quit_on_open = 1
   vim.g.nvim_tree_git_hl = 1
   vim.g.nvim_tree_highlight_opened_files = 1
+  vim.g.nvim_tree_respect_buf_cwd = 1
 
   vim.api.nvim_set_keymap(
     "n",
@@ -20,6 +21,11 @@ M.config = function ()
   )
 
   nvimtree.setup {
+    update_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_cwd = true
+    },
     git = {
       enable = true,
       ignore = false,
