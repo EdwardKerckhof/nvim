@@ -49,6 +49,12 @@ keymap("n", "<C-g>", ":w<CR>", opts) -- Open git fugitive
 keymap("n", "<C-a>", ":dial-increment<CR>", opts) -- Increment numbers
 keymap("n", "<C-x>", ":dial-decrement<CR>", opts) -- Decrement numbers
 
+-- LSP config
+keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
+keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
+
 -- Insert --
 -- Press jk or kj fast to enter
 keymap("i", "jk", "<ESC>", opts)

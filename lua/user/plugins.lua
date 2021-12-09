@@ -55,7 +55,7 @@ return packer.startup(function(use)
     end
   }
 
-  -- CMP
+  -- CMP / LSP
   use { 'neovim/nvim-lspconfig' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-nvim-lua' }
@@ -179,6 +179,9 @@ return packer.startup(function(use)
     config = function()
       require('plugins.blankline').setup()
     end,
+  }
+  use { -- Format
+    'lukas-reineke/format.nvim'
   }
   use { 'tpope/vim-surround' } -- Change surroundings
   use { 'folke/zen-mode.nvim' } -- Zen mode

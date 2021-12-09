@@ -11,20 +11,6 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Emmet configs
-if not lspconfig.emmet_ls then
-  configs.emmet_ls = {
-    default_config = {
-      cmd = {'emmet-ls', '--stdio'};
-      filetypes = {'html', 'css', 'scss', 'blade', 'vue'};
-      root_dir = function()
-        return vim.loop.cwd()
-      end;
-      settings = {};
-    };
-  }
-end
-
 local langServers = {
   'html',
   'cssls',
@@ -61,6 +47,22 @@ for _, server in ipairs(langServers) do
           },
         },
       },
+    }
+  elseif server == 'emmet_ls' then
+    if not lspconfig.emmet_ls then
+      configs.emmet_ls = {
+        default_config = {
+          cmd = {'emmet-ls', '--stdio'};
+          filetypes = {'html', 'css', 'scss', 'blade', 'vue'};
+          root_dir = function()
+            return vim.loop.cwd()
+          end;
+          settings = {};
+        };
+      }
+    end
+    lspconfig[server].setup {
+      capabilities = capabilities
     }
   else
     lspconfig[server].setup {
