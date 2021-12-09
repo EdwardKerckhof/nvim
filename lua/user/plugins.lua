@@ -180,8 +180,11 @@ return packer.startup(function(use)
       require('plugins.blankline').setup()
     end,
   }
-  use { -- Format
-    'lukas-reineke/format.nvim'
+  use { -- Formatter
+    'lukas-reineke/format.nvim',
+    config = function ()
+      require('plugins.formatter').setup()
+    end
   }
   use { 'tpope/vim-surround' } -- Change surroundings
   use { 'folke/zen-mode.nvim' } -- Zen mode
