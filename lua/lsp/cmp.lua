@@ -216,7 +216,7 @@ M.config = function ()
       format = lspkind.cmp_format({
         with_text = true,
         maxwidth = 50,
-        before = function (entry, vim_item)
+        before = function (_, vim_item)
           return vim_item
         end
       })

@@ -18,8 +18,7 @@ M.config = function ()
     },
     sections = {
       lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff',
-                    {'diagnostics', sources={'nvim_lsp', 'coc'}}},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
       lualine_c = {'filename'},
       lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},

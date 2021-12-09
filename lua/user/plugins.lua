@@ -44,6 +44,7 @@ return packer.startup(function(use)
       require('plugins.treesitter').config()
     end,
   }
+  use { 'kyazdani42/nvim-web-devicons' } -- Web devicons needed for a lot of plugins
   use { 'windwp/nvim-ts-autotag' } -- TS autotag/autorename plugin
   use { 'p00f/nvim-ts-rainbow' } -- TS rainbow plugin
   use { -- Lualine
@@ -172,6 +173,12 @@ return packer.startup(function(use)
     config = function()
       require('plugins.project').setup()
     end
+  }
+  use { -- Indend blankline
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('plugins.blankline').setup()
+    end,
   }
   use { 'tpope/vim-surround' } -- Change surroundings
   use { 'folke/zen-mode.nvim' } -- Zen mode
