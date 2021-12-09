@@ -1,7 +1,7 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
   print("Installing packer close and reopen Neovim...")
@@ -17,87 +17,84 @@ vim.cmd([[
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+if not status_ok then return end
 
 -- Have packer use a popup window
 packer.init({
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'single' })
-      end
-    }
+  display = {
+    open_fn = function()
+      return require('packer.util').float({border = 'single'})
+    end
   }
-)
+})
 
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use { 'wbthomason/packer.nvim' } -- Have packer manage itself
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'nvim-lua/popup.nvim' } -- An implementation of the Popup API from vim in Neovim
+  use {'wbthomason/packer.nvim'} -- Have packer manage itself
+  use {'nvim-lua/plenary.nvim'}
+  use {'nvim-lua/popup.nvim'} -- An implementation of the Popup API from vim in Neovim
   use { -- Treesitter
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     config = function()
       require('plugins.treesitter').config()
     end,
+    event = "BufWinEnter"
   }
-  use { 'kyazdani42/nvim-web-devicons' } -- Web devicons needed for a lot of plugins
-  use { 'windwp/nvim-ts-autotag' } -- TS autotag/autorename plugin
-  use { 'p00f/nvim-ts-rainbow' } -- TS rainbow plugin
+  use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
+  use {'windwp/nvim-ts-autotag', event = "InsertEnter", after = "nvim-treesitter"} -- TS autotag/autorename plugin
+  use {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"} -- TS rainbow plugin
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function ()
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
       require('plugins.lualine').config()
-    end
+    end,
+    event = "BufWinEnter"
   }
 
   -- CMP / LSP
-  use { 'neovim/nvim-lspconfig' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-cmdline' }
-  use { 'hrsh7th/cmp-vsnip' }
-  use { 'hrsh7th/vim-vsnip' }
+  use {'neovim/nvim-lspconfig'}
+  use {'hrsh7th/cmp-nvim-lsp'}
+  use {'hrsh7th/cmp-nvim-lua'}
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-path'}
+  use {'hrsh7th/cmp-cmdline'}
+  use {'hrsh7th/cmp-vsnip'}
+  use {'hrsh7th/vim-vsnip'}
   use {
     'hrsh7th/nvim-cmp',
-    config = function ()
+    config = function()
       require('lsp.cmp').config()
     end,
-    requires = {
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets'
-    }
+    requires = {'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets'}
   }
-  use { 'rafamadriz/friendly-snippets' }
+  use {'rafamadriz/friendly-snippets'}
   use {
     'L3MON4D3/LuaSnip',
-    config = function ()
+    config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
     end
   }
-  use { 'saadparwaiz1/cmp_luasnip' }
+  use {'saadparwaiz1/cmp_luasnip'}
 
   -- LSP Installer
-  use { 'williamboman/nvim-lsp-installer' }
-  use { 'onsails/lspkind-nvim' }
+  use {'williamboman/nvim-lsp-installer'}
+  use {'onsails/lspkind-nvim'}
   use { -- Colorscheme
     'folke/tokyonight.nvim',
     config = function()
       require('plugins.colorscheme').config()
-    end,
+    end
   }
   use { -- Buffer status bar
     'romgrk/barbar.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function ()
+    config = function()
       require('plugins.barbar').config()
-    end
+    end,
+    event = "BufWinEnter"
   }
   use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
@@ -108,23 +105,24 @@ return packer.startup(function(use)
   }
   use { -- Nvim autopairs
     'windwp/nvim-autopairs',
-    config = function ()
+    config = function()
       require('plugins.autopairs').config()
-    end
+    end,
+    after = "nvim-cmp"
   }
   use { -- Whichkey
     'folke/which-key.nvim',
-    config = function ()
+    config = function()
       require('plugins.which-key').setup()
     end,
     event = 'BufWinEnter'
   }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = {'nvim-lua/plenary.nvim'},
     config = function()
       require("plugins.telescope").setup()
-    end,
+    end
   }
   use { -- FZF telescope plugin
     'nvim-telescope/telescope-fzf-native.nvim'
@@ -134,39 +132,44 @@ return packer.startup(function(use)
   }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
-    config = function ()
+    config = function()
       require('plugins.renamer').config()
-    end,
+    end
   }
   use { -- Commenter
     'numToStr/Comment.nvim',
     config = function()
       require('plugins.comment').setup()
-    end
+    end,
+    event = "BufRead"
   }
   use { -- Colorizer
     'norcalli/nvim-colorizer.lua',
-    config = function ()
+    config = function()
       require('plugins.colorizer').setup()
-    end
+    end,
+    event = "BufRead"
   }
   use { -- Gitsigns
     'lewis6991/gitsigns.nvim',
-    config = function ()
+    config = function()
       require('plugins.gitsigns').setup()
-    end
+    end,
+    event = "BufRead"
   }
   use { -- Toggleterm
     'akinsho/toggleterm.nvim',
     config = function()
       require('plugins.terminal').setup()
     end,
+    event = "BufWinEnter"
   }
   use { -- Dashboard
     'glepnir/dashboard-nvim',
     config = function()
       require('plugins.dashboard').setup()
-    end
+    end,
+    event = "BufWinEnter"
   }
   use { -- Recent projects
     'ahmedkhalf/project.nvim',
@@ -179,19 +182,18 @@ return packer.startup(function(use)
     config = function()
       require('plugins.blankline').setup()
     end,
+    event = "BufRead"
   }
   use { -- Formatter
     'lukas-reineke/format.nvim',
-    config = function ()
+    config = function()
       require('plugins.formatter').setup()
     end
   }
-  use { 'tpope/vim-surround' } -- Change surroundings
-  use { 'folke/zen-mode.nvim' } -- Zen mode
+  use {'tpope/vim-surround'} -- Change surroundings
+  use {'folke/zen-mode.nvim'} -- Zen mode
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
+  if PACKER_BOOTSTRAP then require('packer').sync() end
 end)
