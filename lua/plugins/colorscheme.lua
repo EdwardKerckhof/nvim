@@ -1,7 +1,7 @@
 -- Colorscheme (https://github.com/folke/tokyonight.nvim)
 local M = {}
 
-M.config = function ()
+M.setup = function ()
   vim.g.tokyonight_style = "storm"
   vim.g.tokyonight_italic_functions = false
 

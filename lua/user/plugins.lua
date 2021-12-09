@@ -37,10 +37,10 @@ return packer.startup(function(use)
   use { -- Treesitter
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
+    event = "BufWinEnter",
     config = function()
       require('plugins.treesitter').config()
     end,
-    event = "BufWinEnter"
   }
   use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
   use {'windwp/nvim-ts-autotag', event = "InsertEnter", after = "nvim-treesitter"} -- TS autotag/autorename plugin
@@ -48,10 +48,10 @@ return packer.startup(function(use)
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    event = "BufWinEnter",
     config = function()
       require('plugins.lualine').config()
     end,
-    event = "BufWinEnter"
   }
 
   -- CMP / LSP
@@ -85,23 +85,24 @@ return packer.startup(function(use)
   use { -- Colorscheme
     'folke/tokyonight.nvim',
     config = function()
-      require('plugins.colorscheme').config()
+      require('plugins.colorscheme').setup()
     end
   }
   use { -- Buffer status bar
     'romgrk/barbar.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
+    event = "BufWinEnter",
     config = function()
       require('plugins.barbar').config()
     end,
-    event = "BufWinEnter"
   }
   use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
+    cmd = "NvimTreeToggle",
     config = function()
       require('plugins.nvim-tree').config()
-    end
+    end,
   }
   use { -- Nvim autopairs
     'windwp/nvim-autopairs',
@@ -112,14 +113,15 @@ return packer.startup(function(use)
   }
   use { -- Whichkey
     'folke/which-key.nvim',
+    event = 'BufWinEnter',
     config = function()
       require('plugins.which-key').setup()
     end,
-    event = 'BufWinEnter'
   }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'},
+    cmd = "Telescope",
     config = function()
       require("plugins.telescope").setup()
     end
@@ -138,38 +140,39 @@ return packer.startup(function(use)
   }
   use { -- Commenter
     'numToStr/Comment.nvim',
+    event = "BufRead",
     config = function()
       require('plugins.comment').setup()
     end,
-    event = "BufRead"
   }
   use { -- Colorizer
     'norcalli/nvim-colorizer.lua',
+    event = "BufRead",
     config = function()
       require('plugins.colorizer').setup()
     end,
-    event = "BufRead"
   }
   use { -- Gitsigns
     'lewis6991/gitsigns.nvim',
+    event = "BufRead",
     config = function()
       require('plugins.gitsigns').setup()
     end,
-    event = "BufRead"
   }
   use { -- Toggleterm
     'akinsho/toggleterm.nvim',
+    event = "BufWinEnter",
     config = function()
       require('plugins.terminal').setup()
     end,
-    event = "BufWinEnter"
   }
   use { -- Dashboard
     'glepnir/dashboard-nvim',
+    cmd = "Dashboard",
+    event = "BufWinEnter",
     config = function()
       require('plugins.dashboard').setup()
     end,
-    event = "BufWinEnter"
   }
   use { -- Recent projects
     'ahmedkhalf/project.nvim',
@@ -179,16 +182,17 @@ return packer.startup(function(use)
   }
   use { -- Indent blankline
     'lukas-reineke/indent-blankline.nvim',
+    event = "BufRead",
     config = function()
       require('plugins.blankline').setup()
     end,
-    event = "BufRead"
   }
   use { -- Formatter
     'lukas-reineke/format.nvim',
+    cmd = "Format",
     config = function()
       require('plugins.formatter').setup()
-    end
+    end,
   }
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
