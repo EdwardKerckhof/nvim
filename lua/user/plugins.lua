@@ -257,13 +257,6 @@ return packer.startup(function(use)
       require('plugins.neoscroll')
     end
   }
-  use { -- Pick up where you left of
-    'ethanholz/nvim-lastplace',
-    event = 'BufRead',
-    config = function ()
-      require('plugins.lastplace')
-    end
-  }
   use {
     'folke/todo-comments.nvim',
     event = 'BufRead',
