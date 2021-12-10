@@ -64,6 +64,9 @@ M.config = function ()
     },
     context_commentstring = { -- comment based on cursor location
       enable = true
+    },
+    matchup = {
+      enable = true
     }
   }
 end
