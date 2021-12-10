@@ -38,7 +38,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     event = "BufWinEnter",
-    config = function()
+    config = function(blam)
       require('plugins.treesitter').config()
     end,
   }
@@ -208,6 +208,14 @@ return packer.startup(function(use)
     'f-person/git-blame.nvim',
     config = function ()
       require('plugins.git-blame').setup()
+    end
+  }
+  use {
+    "mattn/vim-gist",
+    event = "BufRead",
+    requires = "mattn/webapi-vim",
+    config = function ()
+      require('plugins.vim-gist').setup()
     end
   }
   use {'tpope/vim-surround'} -- Change surroundings
