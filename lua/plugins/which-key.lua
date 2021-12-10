@@ -168,6 +168,14 @@ M.config = function()
         p = {"<cmd>Gist -b -p<cr>", "Create Private"}
       },
 
+      -- Bracey hot reload live server
+      S = {
+        name = "Bracey live server",
+        s = {"<cmd>Bracey<cr>", "Start Live Server"},
+        S = {"<cmd>BraceyStop<cr>", "Stop Live Server"},
+        r = {"<cmd>BraceyReload<cr>", "Reload Live Server"},
+      },
+
       -- DAP Debugger
       d = {
         name = "Debugger",

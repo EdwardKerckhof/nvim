@@ -257,14 +257,14 @@ return packer.startup(function(use)
       require('plugins.neoscroll')
     end
   }
-  use {
+  use { -- TODO comments highlight and searcher
     'folke/todo-comments.nvim',
     event = 'BufRead',
     config = function()
       require('plugins.todo-comments').setup()
     end
   }
-  use {
+  use { -- Match brackets
     'andymass/vim-matchup',
     event = 'CursorMoved',
     config = function()
@@ -279,8 +279,13 @@ return packer.startup(function(use)
     end
   }
   use { -- Open urls with gx
-    "felipec/vim-sanegx",
-    event = "BufRead",
+    'felipec/vim-sanegx',
+    event = 'BufRead',
+  }
+  use { -- Live edit html, css and javascript
+    'turbio/bracey.vim',
+    cmd = {'Bracey', 'BracyStop', 'BraceyReload', 'BraceyEval'},
+    run = 'npm install --prefix server',
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
