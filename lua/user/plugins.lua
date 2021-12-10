@@ -199,10 +199,16 @@ return packer.startup(function(use)
       require('plugins.hop').setup()
     end
   }
-  use {
+  use { -- diffview
     'sindrets/diffview.nvim',
     event = 'BufRead',
     requires = 'nvim-lua/plenary.nvim'
+  }
+  use { -- git-blame
+    'f-person/git-blame.nvim',
+    config = function ()
+      require('plugins.git-blame').setup()
+    end
   }
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode

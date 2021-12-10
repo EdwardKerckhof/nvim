@@ -40,7 +40,7 @@ M.setup = function ()
         linehl = "GitSignsChangeLn",
       },
     },
-    current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
     numhl = false,
     linehl = false,
     keymaps = {
