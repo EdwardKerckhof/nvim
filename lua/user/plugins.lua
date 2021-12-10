@@ -38,13 +38,18 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     event = "BufWinEnter",
-    config = function(blam)
+    config = function(_)
       require('plugins.treesitter').config()
     end,
   }
   use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
   use {'windwp/nvim-ts-autotag', event = "InsertEnter", after = "nvim-treesitter"} -- TS autotag/autorename plugin
   use {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"} -- TS rainbow plugin
+  use { -- TS commenstring based on cursor location
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    event = "BufRead",
+    after = "nvim-treesitter"
+  }
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -210,7 +215,7 @@ return packer.startup(function(use)
       require('plugins.git-blame').setup()
     end
   }
-  use {
+  use { -- vig-gist
     "mattn/vim-gist",
     event = "BufRead",
     requires = "mattn/webapi-vim",

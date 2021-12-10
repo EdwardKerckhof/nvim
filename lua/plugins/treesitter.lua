@@ -62,6 +62,9 @@ M.config = function ()
       enable = true,
       extended_mode = false,
     },
+    context_commentstring = { -- comment based on cursor location
+      enable = true
+    }
   }
 end
 
