@@ -99,7 +99,6 @@ return packer.startup(function(use)
   use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
-    cmd = "NvimTreeToggle",
     config = function()
       require('plugins.nvim-tree').config()
     end,
@@ -109,7 +108,6 @@ return packer.startup(function(use)
     config = function()
       require('plugins.autopairs').config()
     end,
-    after = "nvim-cmp"
   }
   use { -- Whichkey
     'folke/which-key.nvim',
