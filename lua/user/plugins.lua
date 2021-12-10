@@ -40,7 +40,7 @@ return packer.startup(function(use)
     event = 'BufWinEnter',
     config = function(_)
       require('plugins.treesitter').config()
-    end,
+    end
   }
   use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
   use {'windwp/nvim-ts-autotag', event = 'InsertEnter', after = 'nvim-treesitter'} -- TS autotag/autorename plugin
@@ -56,7 +56,7 @@ return packer.startup(function(use)
     event = 'BufWinEnter',
     config = function()
       require('plugins.lualine').config()
-    end,
+    end
   }
 
   -- CMP / LSP
@@ -99,27 +99,27 @@ return packer.startup(function(use)
     event = 'BufWinEnter',
     config = function()
       require('plugins.barbar').config()
-    end,
+    end
   }
   use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('plugins.nvim-tree').config()
-    end,
+    end
   }
   use { -- Nvim autopairs
     'windwp/nvim-autopairs',
     config = function()
       require('plugins.autopairs').config()
-    end,
+    end
   }
   use { -- Whichkey
     'folke/which-key.nvim',
     event = 'BufWinEnter',
     config = function()
       require('plugins.which-key').setup()
-    end,
+    end
   }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
@@ -146,28 +146,28 @@ return packer.startup(function(use)
     event = 'BufRead',
     config = function()
       require('plugins.comment').setup()
-    end,
+    end
   }
   use { -- Colorizer
     'norcalli/nvim-colorizer.lua',
     event = 'BufRead',
     config = function()
       require('plugins.colorizer').setup()
-    end,
+    end
   }
   use { -- Gitsigns
     'lewis6991/gitsigns.nvim',
     event = 'BufRead',
     config = function()
       require('plugins.gitsigns').setup()
-    end,
+    end
   }
   use { -- Toggleterm
     'akinsho/toggleterm.nvim',
     event = 'BufWinEnter',
     config = function()
       require('plugins.terminal').setup()
-    end,
+    end
   }
   use { -- Dashboard
     'glepnir/dashboard-nvim',
@@ -175,7 +175,7 @@ return packer.startup(function(use)
     event = 'BufWinEnter',
     config = function()
       require('plugins.dashboard').setup()
-    end,
+    end
   }
   use { -- Recent projects
     'ahmedkhalf/project.nvim',
@@ -188,19 +188,19 @@ return packer.startup(function(use)
     event = 'BufRead',
     config = function()
       require('plugins.blankline').setup()
-    end,
+    end
   }
   use { -- Formatter
     'lukas-reineke/format.nvim',
     cmd = 'Format',
     config = function()
       require('plugins.formatter').setup()
-    end,
+    end
   }
   use { -- hop
     'phaazon/hop.nvim',
     branch = 'v1',
-    config = function ()
+    config = function()
       require('plugins.hop').setup()
     end
   }
@@ -211,7 +211,7 @@ return packer.startup(function(use)
   }
   use { -- git-blame
     'f-person/git-blame.nvim',
-    config = function ()
+    config = function()
       require('plugins.git-blame').setup()
     end
   }
@@ -219,7 +219,7 @@ return packer.startup(function(use)
     'mattn/vim-gist',
     event = 'BufRead',
     requires = 'mattn/webapi-vim',
-    config = function ()
+    config = function()
       require('plugins.vim-gist').setup()
     end
   }
@@ -238,7 +238,7 @@ return packer.startup(function(use)
   use {
     'monaqa/dial.nvim',
     event = 'BufRead',
-    config = function ()
+    config = function()
       require('plugins.dial').setup()
     end
   }
@@ -248,7 +248,7 @@ return packer.startup(function(use)
     ft = 'markdown',
     config = function()
       require('plugins.markdown-preview')
-    end,
+    end
   }
   use { -- neoscroll smooth scroll
     'karb94/neoscroll.nvim',
@@ -262,19 +262,30 @@ return packer.startup(function(use)
     event = 'BufRead',
     config = function()
       require('plugins.todo-comments').setup()
-    end,
+    end
   }
   use {
     'andymass/vim-matchup',
     event = 'CursorMoved',
     config = function()
-      vim.g.matchup_matchparen_offscreen = { method = nil }
-    end,
+      require('plugins.matchup').setup()
+    end
+  }
+  use { -- Underline word under cursor
+    'itchyny/vim-cursorword',
+    event = {'BufEnter', 'BufNewFile'},
+    config = function()
+      require('plugins.cursorword').setup()
+    end
+  }
+  use { -- Open urls with gx
+    "felipec/vim-sanegx",
+    event = "BufRead",
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
-  use {'itchyny/vim-cursorword'} -- Underline word under cursor
+  use {'tpope/vim-repeat'} -- Repeat with '.'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
