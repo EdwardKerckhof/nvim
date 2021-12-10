@@ -242,10 +242,36 @@ return packer.startup(function(use)
       require('plugins.dial').setup()
     end
   }
+  use { -- Markdown Preview
+    'iamcco/markdown-preview.nvim',
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      require('plugins.markdown-preview')
+    end,
+  }
+  use {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require('neoscroll').setup({
+          -- All these keys will be mapped to their corresponding default scrolling animation
+          mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+          '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+          hide_cursor = true,          -- Hide cursor while scrolling
+          stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+          use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+          respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+          cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+          easing_function = nil,        -- Default easing function
+          pre_hook = nil,              -- Function to run before the scrolling animation starts
+          post_hook = nil,              -- Function to run after the scrolling animation ends
+          })
+    end
+  }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
-  use {'iamcco/markdown-preview.nvim'} -- Markdow preview
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
