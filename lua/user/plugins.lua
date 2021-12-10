@@ -4,7 +4,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  print("Installing packer close and reopen Neovim...")
+  print('Installing packer close and reopen Neovim...')
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.file
@@ -16,7 +16,7 @@ vim.cmd([[
 ]])
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then return end
 
 -- Have packer use a popup window
@@ -36,24 +36,24 @@ return packer.startup(function(use)
   use {'nvim-lua/popup.nvim'} -- An implementation of the Popup API from vim in Neovim
   use { -- Treesitter
     'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
-    event = "BufWinEnter",
+    run = ':TSUpdate',
+    event = 'BufWinEnter',
     config = function(_)
       require('plugins.treesitter').config()
     end,
   }
   use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
-  use {'windwp/nvim-ts-autotag', event = "InsertEnter", after = "nvim-treesitter"} -- TS autotag/autorename plugin
-  use {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"} -- TS rainbow plugin
+  use {'windwp/nvim-ts-autotag', event = 'InsertEnter', after = 'nvim-treesitter'} -- TS autotag/autorename plugin
+  use {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'} -- TS rainbow plugin
   use { -- TS commenstring based on cursor location
     'JoosepAlviste/nvim-ts-context-commentstring',
-    event = "BufRead",
-    after = "nvim-treesitter"
+    event = 'BufRead',
+    after = 'nvim-treesitter'
   }
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    event = "BufWinEnter",
+    event = 'BufWinEnter',
     config = function()
       require('plugins.lualine').config()
     end,
@@ -79,7 +79,7 @@ return packer.startup(function(use)
   use {
     'L3MON4D3/LuaSnip',
     config = function()
-      require("luasnip/loaders/from_vscode").lazy_load()
+      require('luasnip/loaders/from_vscode').lazy_load()
     end
   }
   use {'saadparwaiz1/cmp_luasnip'}
@@ -96,7 +96,7 @@ return packer.startup(function(use)
   use { -- Buffer status bar
     'romgrk/barbar.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    event = "BufWinEnter",
+    event = 'BufWinEnter',
     config = function()
       require('plugins.barbar').config()
     end,
@@ -124,9 +124,9 @@ return packer.startup(function(use)
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'},
-    cmd = "Telescope",
+    cmd = 'Telescope',
     config = function()
-      require("plugins.telescope").setup()
+      require('plugins.telescope').setup()
     end
   }
   use { -- FZF telescope plugin
@@ -143,36 +143,36 @@ return packer.startup(function(use)
   }
   use { -- Commenter
     'numToStr/Comment.nvim',
-    event = "BufRead",
+    event = 'BufRead',
     config = function()
       require('plugins.comment').setup()
     end,
   }
   use { -- Colorizer
     'norcalli/nvim-colorizer.lua',
-    event = "BufRead",
+    event = 'BufRead',
     config = function()
       require('plugins.colorizer').setup()
     end,
   }
   use { -- Gitsigns
     'lewis6991/gitsigns.nvim',
-    event = "BufRead",
+    event = 'BufRead',
     config = function()
       require('plugins.gitsigns').setup()
     end,
   }
   use { -- Toggleterm
     'akinsho/toggleterm.nvim',
-    event = "BufWinEnter",
+    event = 'BufWinEnter',
     config = function()
       require('plugins.terminal').setup()
     end,
   }
   use { -- Dashboard
     'glepnir/dashboard-nvim',
-    cmd = "Dashboard",
-    event = "BufWinEnter",
+    cmd = 'Dashboard',
+    event = 'BufWinEnter',
     config = function()
       require('plugins.dashboard').setup()
     end,
@@ -185,14 +185,14 @@ return packer.startup(function(use)
   }
   use { -- Indent blankline
     'lukas-reineke/indent-blankline.nvim',
-    event = "BufRead",
+    event = 'BufRead',
     config = function()
       require('plugins.blankline').setup()
     end,
   }
   use { -- Formatter
     'lukas-reineke/format.nvim',
-    cmd = "Format",
+    cmd = 'Format',
     config = function()
       require('plugins.formatter').setup()
     end,
@@ -216,46 +216,60 @@ return packer.startup(function(use)
     end
   }
   use { -- vig-gist
-    "mattn/vim-gist",
-    event = "BufRead",
-    requires = "mattn/webapi-vim",
+    'mattn/vim-gist',
+    event = 'BufRead',
+    requires = 'mattn/webapi-vim',
     config = function ()
       require('plugins.vim-gist').setup()
     end
   }
   use { -- change cwd automatically
-    "ahmedkhalf/lsp-rooter.nvim",
+    'ahmedkhalf/lsp-rooter.nvim',
     config = function()
-      require("plugins.lsp-rooter").setup()
+      require('plugins.lsp-rooter').setup()
     end
   }
   use { -- add signature hinting when typing
-    "ray-x/lsp_signature.nvim",
+    'ray-x/lsp_signature.nvim',
     config = function()
-      require("plugins.lsp-signature").setup()
+      require('plugins.lsp-signature').setup()
     end
   }
   use {
     'monaqa/dial.nvim',
-    event = "BufRead",
+    event = 'BufRead',
     config = function ()
       require('plugins.dial').setup()
     end
   }
   use { -- Markdown Preview
     'iamcco/markdown-preview.nvim',
-    run = "cd app && npm install",
-    ft = "markdown",
+    run = 'cd app && npm install',
+    ft = 'markdown',
     config = function()
       require('plugins.markdown-preview')
     end,
   }
   use { -- neoscroll smooth scroll
     'karb94/neoscroll.nvim',
-    event = "WinScrolled",
+    event = 'WinScrolled',
     config = function()
       require('plugins.neoscroll')
     end
+  }
+  use { -- Pick up where you left of
+    'ethanholz/nvim-lastplace',
+    event = 'BufRead',
+    config = function ()
+      require('plugins.lastplace')
+    end
+  }
+  use {
+    'folke/todo-comments.nvim',
+    event = 'BufRead',
+    config = function()
+      require('plugins.todo-comments').setup()
+    end,
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
