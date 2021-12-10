@@ -223,6 +223,19 @@ return packer.startup(function(use)
       require('plugins.vim-gist').setup()
     end
   }
+  use { -- change cwd automatically
+    "ahmedkhalf/lsp-rooter.nvim",
+    config = function()
+      require("plugins.lsp-rooter").setup()
+    end
+  }
+  use {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require("plugins.lsp-signature").setup()
+    end
+  }
+  use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
 
