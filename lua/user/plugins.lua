@@ -245,6 +245,7 @@ return packer.startup(function(use)
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
+  use {'iamcco/markdown-preview.nvim'} -- Markdow preview
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
