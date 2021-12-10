@@ -113,7 +113,8 @@ M.config = function()
         b = {"<cmd>Telescope git_branches<CR>", "Checkout branch"},
         c = {"<cmd>Telescope git_commits<CR>", "Checkout commit"},
         C = {"<cmd>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
-        d = {"<cmd>Gitsigns diffthis HEAD<CR>", "Git Diff"},
+        d = {"<cmd>DiffviewOpen<CR>", "Git Diff Open"},
+        D = {"<cmd>DiffviewClose<CR>", "Git Diff Close"},
         g = {toggle_lazygit, "Lazy Git"}
       },
 

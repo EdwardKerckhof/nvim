@@ -199,6 +199,11 @@ return packer.startup(function(use)
       require('plugins.hop').setup()
     end
   }
+  use {
+    'sindrets/diffview.nvim',
+    event = 'BufRead',
+    requires = 'nvim-lua/plenary.nvim'
+  }
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
 
