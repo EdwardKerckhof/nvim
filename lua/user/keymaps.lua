@@ -46,8 +46,6 @@ keymap("n", "<C-o>", ":RnvimrToggle<CR>", opts) -- Toggle ranger
 keymap("n", "<C-p>", ":Telescope find_files prompt_prefix=🔍<CR>", opts) -- CTRL-P with telescope
 keymap("n", "<C-f>", ":lua require('spectre').open_file_search()<CR>", opts) -- Spectre file search
 keymap("n", "<C-g>", ":w<CR>", opts) -- Open git fugitive
-keymap("n", "<C-a>", ":dial-increment<CR>", opts) -- Increment numbers
-keymap("n", "<C-x>", ":dial-decrement<CR>", opts) -- Decrement numbers
 
 -- LSP config
 keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
@@ -68,10 +66,6 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-
--- Control keys
-keymap("v", "<C-a>", ":dial-increment<CR>", opts) -- Increment numbers
-keymap("v", "<C-x>", ":dial-decrement<CR>", opts) -- Decrement numbers
 
 -- Visual Block --
 -- Move text up and down

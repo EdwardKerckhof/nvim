@@ -229,10 +229,17 @@ return packer.startup(function(use)
       require("plugins.lsp-rooter").setup()
     end
   }
-  use {
+  use { -- add signature hinting when typing
     "ray-x/lsp_signature.nvim",
     config = function()
       require("plugins.lsp-signature").setup()
+    end
+  }
+  use {
+    'monaqa/dial.nvim',
+    event = "BufRead",
+    config = function ()
+      require('plugins.dial').setup()
     end
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
