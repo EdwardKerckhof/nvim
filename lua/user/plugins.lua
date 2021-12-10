@@ -192,6 +192,13 @@ return packer.startup(function(use)
       require('plugins.formatter').setup()
     end,
   }
+  use { -- hop
+    'phaazon/hop.nvim',
+    branch = 'v1',
+    config = function ()
+      require('plugins.hop').setup()
+    end
+  }
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode
 
