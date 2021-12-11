@@ -30,7 +30,7 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- My plugins herplugins.luae
   use {'wbthomason/packer.nvim'} -- Have packer manage itself
   use {'nvim-lua/plenary.nvim'}
   use {'nvim-lua/popup.nvim'} -- An implementation of the Popup API from vim in Neovim
@@ -53,7 +53,6 @@ return packer.startup(function(use)
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    event = 'BufWinEnter',
     config = function()
       require('plugins.lualine').config()
     end
@@ -94,11 +93,11 @@ return packer.startup(function(use)
     end
   }
   use { -- Buffer status bar
-    'romgrk/barbar.nvim',
+    -- 'romgrk/barbar.nvim',
+    'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    event = 'BufWinEnter',
     config = function()
-      require('plugins.barbar').config()
+      require('plugins.bufferline').config()
     end
   }
   use { -- File tree explorer
@@ -170,9 +169,9 @@ return packer.startup(function(use)
     end
   }
   use { -- Dashboard
-    'glepnir/dashboard-nvim',
-    cmd = 'Dashboard',
-    event = 'BufWinEnter',
+    -- 'glepnir/dashboard-nvim',
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('plugins.dashboard').setup()
     end
@@ -252,9 +251,9 @@ return packer.startup(function(use)
   }
   use { -- neoscroll smooth scroll
     'karb94/neoscroll.nvim',
-    event = 'WinScrolled',
+    event = 'BufRead',
     config = function()
-      require('plugins.neoscroll')
+      require('plugins.neoscroll').setup()
     end
   }
   use { -- TODO comments highlight and searcher
@@ -286,6 +285,9 @@ return packer.startup(function(use)
     'turbio/bracey.vim',
     cmd = {'Bracey', 'BracyStop', 'BraceyReload', 'BraceyEval'},
     run = 'npm install --prefix server',
+  }
+  use { -- Notifications
+    'rcarriga/nvim-notify'
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings

@@ -2,7 +2,7 @@
 local M = {}
 
 M.setup = function ()
-  vim.g.tokyonight_style = "storm"
+  vim.g.tokyonight_style = "night"
   vim.g.tokyonight_italic_functions = false
 
   -- Load the colorscheme
