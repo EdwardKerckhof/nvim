@@ -58,7 +58,7 @@ M.setup = function ()
     },
   }
 
-  vim.cmd('autocmd BufWritePost * FormatWrite')
+  vim.cmd('autocmd BufWritePost * Format')
 end
 
 return M
