@@ -54,6 +54,8 @@ for _, server in ipairs(langServers) do
       }
     end
     lspconfig[server].setup {capabilities = capabilities}
+  elseif server == 'volar' then
+    lspconfig[server].setup {filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}}
   else
     lspconfig[server].setup {capabilities = capabilities}
   end

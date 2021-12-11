@@ -18,8 +18,7 @@ M.setup = function()
     direction = "float",
     close_on_exit = true, -- close the terminal window when the process exits
     shell = "zsh", -- change the default shell
-    float_opts = {border = "curved", winblend = 0, highlights = {border = "Normal", background = "Normal"}},
-    execs = {{"lazygit", "<leader>gg", "LazyGit", "float"}, {"lazygit", "<c-\\>", "LazyGit", "float"}}
+    float_opts = {border = "curved", winblend = 0, highlights = {border = "Normal", background = "Normal"}}
   }
 end
 

@@ -3,9 +3,9 @@ local M = {}
 local localOpts = {}
 
 local Terminal = require('toggleterm.terminal').Terminal
-local toggle_lazygit = function()
-  local lazygit = Terminal:new({CMD = "lazygit", direction = "float"})
-  return lazygit:toggle()
+local lazygit = Terminal:new({cmd = "lazygit", hidden = true, direction = "float"})
+function _lazygit_toggle()
+  lazygit:toggle()
 end
 
 M.config = function()
@@ -116,7 +116,7 @@ M.config = function()
         C = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
         d = {"<CMD>DiffviewOpen<CR>", "Git Diff Open"},
         D = {"<CMD>DiffviewClose<CR>", "Git Diff Close"},
-        g = {toggle_lazygit, "Lazy Git"}
+        g = {"<CMD>lua _lazygit_toggle()<CR>", "Lazy Git"}
       },
 
       -- LSP
@@ -196,12 +196,21 @@ M.config = function()
       },
 
       -- Tests jester
-      t = {
-        name = "Tests",
+      j = {
+        name = "Jester",
         d = {"<CMD>lua require('jester').debug_file({ path_to_jest = '/usr/bin/jest' })<CR>", "Debug File"},
         f = {"<CMD>lua require('jester').run_file()<CR>", "Test File"},
         t = {"<CMD>lua require('jester').run()<CR>", "Test Nearest"},
         l = {"<CMD>lua require('jester').run_last()<CR>", "Test Last"}
+      },
+
+      -- Trouble
+      t = {
+        name = "Trouble",
+        t = {"<CMD>TroubleToggle<CR>", "Toggle"},
+        w = {"<CMD>TroubleToggle workspace_diagnostics<CR>", "Workspace Diagnostics"},
+        d = {"<CMD>TroubleToggle document_diagnostics<CR>", "Document Diagnostics"},
+        f = {"<CMD>TroubleToggle quickfix<CR>", "Quickfix"}
       },
 
       -- Package info

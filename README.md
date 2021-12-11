@@ -1,4 +1,4 @@
-# Neovim from scratch
+# Bloated Neovim with lua
 
 ```
 git clone git@github.com:EdwardKerckhof/nvim.git ~/.config/nvim

@@ -118,6 +118,13 @@ return packer.startup(function(use)
       require('plugins.which-key').setup()
     end
   }
+  use { -- Trouble
+    'folke/trouble.nvim',
+    config = function()
+      require("trouble").setup {auto_open = true, auto_close = true, padding = false, height = 10, use_lsp_diagnostic_signs = true}
+    end,
+    cmd = "Trouble"
+  }
   use { -- Telescope
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'},
@@ -230,6 +237,12 @@ return packer.startup(function(use)
     'ray-x/lsp_signature.nvim',
     config = function()
       require('plugins.lsp-signature').setup()
+    end
+  }
+  use {
+    'aserowy/tmux.nvim',
+    config = function()
+      require('plugins.tmux').setup()
     end
   }
   use {
