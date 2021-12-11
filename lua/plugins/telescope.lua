@@ -1,5 +1,4 @@
 -- Telescope (https://github.com/nvim-telescope/telescope.nvim)
-
 local M = {}
 local localTS = {}
 
