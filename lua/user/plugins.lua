@@ -30,7 +30,6 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins herplugins.luae
   use {'wbthomason/packer.nvim'} -- Have packer manage itself
   use {'nvim-lua/plenary.nvim'}
   use {'nvim-lua/popup.nvim'} -- An implementation of the Popup API from vim in Neovim
@@ -74,7 +73,6 @@ return packer.startup(function(use)
     end,
     requires = {'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets'}
   }
-  use {'rafamadriz/friendly-snippets'}
   use {
     'L3MON4D3/LuaSnip',
     config = function()
@@ -309,6 +307,13 @@ return packer.startup(function(use)
     'lewis6991/spellsitter.nvim',
     config = function()
       require('plugins.spellsitter').setup()
+    end
+  }
+  use { -- Yarn / Npm package info and manager
+    "vuki656/package-info.nvim",
+    requires = "MunifTanjim/nui.nvim",
+    config = function()
+      require('plugins.package-info').setup()
     end
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors

@@ -4,7 +4,7 @@ local localOpts = {}
 
 local Terminal = require('toggleterm.terminal').Terminal
 local toggle_lazygit = function()
-  local lazygit = Terminal:new({cmd = "lazygit", direction = "float"})
+  local lazygit = Terminal:new({CMD = "lazygit", direction = "float"})
   return lazygit:toggle()
 end
 
@@ -45,7 +45,7 @@ M.config = function()
         width = {min = 20, max = 50}, -- min and max width of the columns
         spacing = 3 -- spacing between columns
       },
-      hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+      hidden = {"<silent>", "<CMD>", "<CMD>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
       show_help = true -- show help message on the command line when the popup is visible
     },
     opts = {
@@ -66,150 +66,160 @@ M.config = function()
     },
     vmappings = {["/"] = {"<ESC><CMD>lua require('Comment.api').gc(vim.fn.visualmode())<CR>", "Comment"}},
     mappings = {
-      ["w"] = {"<cmd>w!<CR>", "Save"},
-      ["z"] = {"<cmd>ZenMode<CR>", "Zen"},
-      ["q"] = {"<cmd>q!<CR>", "Quit"},
-      ["/"] = {"<cmd>lua require('Comment').toggle()<CR>", "Comment"},
-      ["c"] = {"<cmd>BufferClose!<CR>", "Close Buffer"},
-      ["f"] = {"<cmd>Telescope find_files<CR>", "Find File"},
-      ["h"] = {"<cmd>nohlsearch<CR>", "No Highlight"},
-      ["P"] = {"<cmd>Telescope projects<CR>", "Projects"},
-      ["?"] = {"<cmd>Cheat<CR>", "Cheatsheet"},
+      ["w"] = {"<CMD>w!<CR>", "Save"},
+      ["z"] = {"<CMD>ZenMode<CR>", "Zen"},
+      ["q"] = {"<CMD>q!<CR>", "Quit"},
+      ["/"] = {"<CMD>lua require('Comment').toggle()<CR>", "Comment"},
+      ["c"] = {"<CMD>BufferClose!<CR>", "Close Buffer"},
+      ["f"] = {"<CMD>Telescope find_files<CR>", "Find File"},
+      ["h"] = {"<CMD>nohlsearch<CR>", "No Highlight"},
+      ["P"] = {"<CMD>Telescope projects<CR>", "Projects"},
+      ["?"] = {"<CMD>Cheat<CR>", "Cheatsheet"},
       b = {
         name = "Buffers",
-        j = {"<cmd>BufferPick<CR>", "Jump"},
-        f = {"<cmd>Telescope buffers<CR>", "Find"},
-        b = {"<cmd>b#<CR>", "Previous"},
-        w = {"<cmd>BufferWipeout<CR>", "Wipeout"},
-        e = {"<cmd>BufferCloseAllButCurrent<CR>", "Close all but current"},
-        h = {"<cmd>BufferCloseBuffersLeft<CR>", "Close all to the left"},
-        l = {"<cmd>BufferCloseBuffersRight<CR>", "Close all to the right"},
-        D = {"<cmd>BufferOrderByDirectory<CR>", "Sort by directory"},
-        L = {"<cmd>BufferOrderByLanguage<CR>", "Sort by language"}
+        j = {"<CMD>BufferPick<CR>", "Jump"},
+        f = {"<CMD>Telescope buffers<CR>", "Find"},
+        b = {"<CMD>b#<CR>", "Previous"},
+        w = {"<CMD>BufferWipeout<CR>", "Wipeout"},
+        e = {"<CMD>BufferCloseAllButCurrent<CR>", "Close all but current"},
+        h = {"<CMD>BufferCloseBuffersLeft<CR>", "Close all to the left"},
+        l = {"<CMD>BufferCloseBuffersRight<CR>", "Close all to the right"},
+        D = {"<CMD>BufferOrderByDirectory<CR>", "Sort by directory"},
+        L = {"<CMD>BufferOrderByLanguage<CR>", "Sort by language"}
       },
 
       -- Packer
       p = {
         name = "Packer",
-        c = {"<cmd>PackerCompile<CR>", "Compile"},
-        i = {"<cmd>PackerInstall<CR>", "Install"},
-        r = {"<cmd>lua require('lvim.plugin-loader').recompile()<CR>", "Re-compile"},
-        s = {"<cmd>PackerSync<CR>", "Sync"},
-        S = {"<cmd>PackerStatus<CR>", "Status"},
-        u = {"<cmd>PackerUpdate<CR>", "Update"}
+        c = {"<CMD>PackerCompile<CR>", "Compile"},
+        i = {"<CMD>PackerInstall<CR>", "Install"},
+        r = {"<CMD>lua require('lvim.plugin-loader').recompile()<CR>", "Re-compile"},
+        s = {"<CMD>PackerSync<CR>", "Sync"},
+        S = {"<CMD>PackerStatus<CR>", "Status"},
+        u = {"<CMD>PackerUpdate<CR>", "Update"}
       },
 
       -- Git
       g = {
         name = "Git",
-        j = {"<cmd>lua require 'gitsigns'.next_hunk()<CR>", "Next Hunk"},
-        k = {"<cmd>lua require 'gitsigns'.prev_hunk()<CR>", "Prev Hunk"},
-        l = {"<cmd>lua require 'gitsigns'.blame_line()<CR>", "Blame"},
-        p = {"<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "Preview Hunk"},
-        r = {"<cmd>lua require 'gitsigns'.reset_hunk()<CR>", "Reset Hunk"},
-        R = {"<cmd>lua require 'gitsigns'.reset_buffer()<CR>", "Reset Buffer"},
-        s = {"<cmd>lua require 'gitsigns'.stage_hunk()<CR>", "Stage Hunk"},
-        u = {"<cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>", "Undo Stage Hunk"},
-        o = {"<cmd>Telescope git_status<CR>", "Open changed file"},
-        b = {"<cmd>Telescope git_branches<CR>", "Checkout branch"},
-        c = {"<cmd>Telescope git_commits<CR>", "Checkout commit"},
-        C = {"<cmd>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
-        d = {"<cmd>DiffviewOpen<CR>", "Git Diff Open"},
-        D = {"<cmd>DiffviewClose<CR>", "Git Diff Close"},
+        j = {"<CMD>lua require 'gitsigns'.next_hunk()<CR>", "Next Hunk"},
+        k = {"<CMD>lua require 'gitsigns'.prev_hunk()<CR>", "Prev Hunk"},
+        l = {"<CMD>lua require 'gitsigns'.blame_line()<CR>", "Blame"},
+        p = {"<CMD>lua require 'gitsigns'.preview_hunk()<CR>", "Preview Hunk"},
+        r = {"<CMD>lua require 'gitsigns'.reset_hunk()<CR>", "Reset Hunk"},
+        R = {"<CMD>lua require 'gitsigns'.reset_buffer()<CR>", "Reset Buffer"},
+        s = {"<CMD>lua require 'gitsigns'.stage_hunk()<CR>", "Stage Hunk"},
+        u = {"<CMD>lua require 'gitsigns'.undo_stage_hunk()<CR>", "Undo Stage Hunk"},
+        o = {"<CMD>Telescope git_status<CR>", "Open changed file"},
+        b = {"<CMD>Telescope git_branches<CR>", "Checkout branch"},
+        c = {"<CMD>Telescope git_commits<CR>", "Checkout commit"},
+        C = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
+        d = {"<CMD>DiffviewOpen<CR>", "Git Diff Open"},
+        D = {"<CMD>DiffviewClose<CR>", "Git Diff Close"},
         g = {toggle_lazygit, "Lazy Git"}
       },
 
       -- LSP
       l = {
         name = "LSP",
-        a = {"<cmd>lua require('lvim.core.telescope').code_actions()<CR>", "Code Action"},
-        d = {"<cmd>Telescope lsp_document_diagnostics<CR>", "Document Diagnostics"},
-        w = {"<cmd>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics"},
-        f = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format"},
-        i = {"<cmd>LspInfo<CR>", "Info"},
-        I = {"<cmd>LspInstallInfo<CR>", "Installer Info"},
-        j = {"<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Next Diagnostic"},
-        k = {"<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Prev Diagnostic"},
-        l = {"<cmd>lua vim.lsp.codelens.run()<CR>", "CodeLens Action"},
+        a = {"<CMD>lua require('lvim.core.telescope').code_actions()<CR>", "Code Action"},
+        d = {"<CMD>Telescope lsp_document_diagnostics<CR>", "Document Diagnostics"},
+        w = {"<CMD>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics"},
+        f = {"<CMD>lua vim.lsp.buf.formatting()<CR>", "Format"},
+        i = {"<CMD>LspInfo<CR>", "Info"},
+        I = {"<CMD>LspInstallInfo<CR>", "Installer Info"},
+        j = {"<CMD>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Next Diagnostic"},
+        k = {"<CMD>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Prev Diagnostic"},
+        l = {"<CMD>lua vim.lsp.codelens.run()<CR>", "CodeLens Action"},
         p = {
           name = "Peek",
-          d = {"<cmd>lua require('lvim.lsp.peek').Peek('definition')<CR>", "Definition"},
-          t = {"<cmd>lua require('lvim.lsp.peek').Peek('typeDefinition')<CR>", "Type Definition"},
-          i = {"<cmd>lua require('lvim.lsp.peek').Peek('implementation')<CR>", "Implementation"}
+          d = {"<CMD>lua require('lvim.lsp.peek').Peek('definition')<CR>", "Definition"},
+          t = {"<CMD>lua require('lvim.lsp.peek').Peek('typeDefinition')<CR>", "Type Definition"},
+          i = {"<CMD>lua require('lvim.lsp.peek').Peek('implementation')<CR>", "Implementation"}
         },
-        q = {"<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Quickfix"},
-        r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename"},
-        s = {"<cmd>Telescope lsp_document_symbols<CR>", "Document Symbols"},
-        S = {"<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols"}
+        q = {"<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>", "Quickfix"},
+        r = {"<CMD>lua vim.lsp.buf.rename()<CR>", "Rename"},
+        s = {"<CMD>Telescope lsp_document_symbols<CR>", "Document Symbols"},
+        S = {"<CMD>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols"}
       },
 
       -- Telescope search
       s = {
         name = "Search",
-        b = {"<cmd>Telescope git_branches<CR>", "Checkout branch"},
-        c = {"<cmd>Telescope colorscheme<CR>", "Colorscheme"},
-        f = {"<cmd>Telescope find_files<CR>", "Find File"},
-        h = {"<cmd>Telescope help_tags<CR>", "Find Help"},
-        M = {"<cmd>Telescope man_pages<CR>", "Man Pages"},
-        r = {"<cmd>Telescope oldfiles<CR>", "Open Recent File"},
-        R = {"<cmd>Telescope registers<CR>", "Registers"},
-        t = {"<cmd>Telescope live_grep<CR>", "Text"},
-        k = {"<cmd>Telescope keymaps<CR>", "Keymaps"},
-        C = {"<cmd>Telescope commands<CR>", "Commands"}
+        b = {"<CMD>Telescope git_branches<CR>", "Checkout branch"},
+        c = {"<CMD>Telescope colorscheme<CR>", "Colorscheme"},
+        f = {"<CMD>Telescope find_files<CR>", "Find File"},
+        h = {"<CMD>Telescope help_tags<CR>", "Find Help"},
+        M = {"<CMD>Telescope man_pages<CR>", "Man Pages"},
+        r = {"<CMD>Telescope oldfiles<CR>", "Open Recent File"},
+        R = {"<CMD>Telescope registers<CR>", "Registers"},
+        t = {"<CMD>Telescope live_grep<CR>", "Text"},
+        k = {"<CMD>Telescope keymaps<CR>", "Keymaps"},
+        C = {"<CMD>Telescope commands<CR>", "Commands"}
       },
 
       -- Gist
       G = {
         name = "Gist",
-        a = {"<cmd>Gist -b -a<cr>", "Create Anon"},
-        d = {"<cmd>Gist -d<cr>", "Delete"},
-        f = {"<cmd>Gist -f<cr>", "Fork"},
-        g = {"<cmd>Gist -b<cr>", "Create"},
-        l = {"<cmd>Gist -l<cr>", "List"},
-        p = {"<cmd>Gist -b -p<cr>", "Create Private"}
+        a = {"<CMD>Gist -b -a<cr>", "Create Anon"},
+        d = {"<CMD>Gist -d<cr>", "Delete"},
+        f = {"<CMD>Gist -f<cr>", "Fork"},
+        g = {"<CMD>Gist -b<cr>", "Create"},
+        l = {"<CMD>Gist -l<cr>", "List"},
+        p = {"<CMD>Gist -b -p<cr>", "Create Private"}
       },
 
       -- Bracey hot reload live server
       S = {
         name = "Bracey live server",
-        s = {"<cmd>Bracey<cr>", "Start Live Server"},
-        S = {"<cmd>BraceyStop<cr>", "Stop Live Server"},
-        r = {"<cmd>BraceyReload<cr>", "Reload Live Server"}
+        s = {"<CMD>Bracey<cr>", "Start Live Server"},
+        S = {"<CMD>BraceyStop<cr>", "Stop Live Server"},
+        r = {"<CMD>BraceyReload<cr>", "Reload Live Server"}
       },
 
       -- DAP Debugger
       d = {
         name = "Debugger",
-        t = {"<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint"},
-        b = {"<cmd>lua require'dap'.step_back()<cr>", "Step Back"},
-        c = {"<cmd>lua require'dap'.continue()<cr>", "Continue"},
-        C = {"<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor"},
-        d = {"<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"},
-        g = {"<cmd>lua require'dap'.session()<cr>", "Get Session"},
-        i = {"<cmd>lua require'dap'.step_into()<cr>", "Step Into"},
-        o = {"<cmd>lua require'dap'.step_over()<cr>", "Step Over"},
-        u = {"<cmd>lua require'dap'.step_out()<cr>", "Step Out"},
-        p = {"<cmd>lua require'dap'.pause.toggle()<cr>", "Pause"},
-        r = {"<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl"},
-        s = {"<cmd>lua require'dap'.continue()<cr>", "Start"},
-        q = {"<cmd>lua require'dap'.close()<cr>", "Quit"}
+        t = {"<CMD>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint"},
+        b = {"<CMD>lua require'dap'.step_back()<cr>", "Step Back"},
+        c = {"<CMD>lua require'dap'.continue()<cr>", "Continue"},
+        C = {"<CMD>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor"},
+        d = {"<CMD>lua require'dap'.disconnect()<cr>", "Disconnect"},
+        g = {"<CMD>lua require'dap'.session()<cr>", "Get Session"},
+        i = {"<CMD>lua require'dap'.step_into()<cr>", "Step Into"},
+        o = {"<CMD>lua require'dap'.step_over()<cr>", "Step Over"},
+        u = {"<CMD>lua require'dap'.step_out()<cr>", "Step Out"},
+        p = {"<CMD>lua require'dap'.pause.toggle()<cr>", "Pause"},
+        r = {"<CMD>lua require'dap'.repl.toggle()<cr>", "Toggle Repl"},
+        s = {"<CMD>lua require'dap'.continue()<cr>", "Start"},
+        q = {"<CMD>lua require'dap'.close()<cr>", "Quit"}
       },
 
       -- Tests jester
       t = {
         name = "Tests",
-        d = {"<cmd>lua require('jester').debug_file({ path_to_jest = '/usr/bin/jest' })<CR>", "Debug File"},
-        f = {"<cmd>lua require('jester').run_file()<CR>", "Test File"},
-        t = {"<cmd>lua require('jester').run()<CR>", "Test Nearest"},
-        l = {"<cmd>lua require('jester').run_last()<CR>", "Test Last"}
+        d = {"<CMD>lua require('jester').debug_file({ path_to_jest = '/usr/bin/jest' })<CR>", "Debug File"},
+        f = {"<CMD>lua require('jester').run_file()<CR>", "Test File"},
+        t = {"<CMD>lua require('jester').run()<CR>", "Test Nearest"},
+        l = {"<CMD>lua require('jester').run_last()<CR>", "Test Last"}
+      },
+
+      -- Package info
+      n = {
+        name = "Package Info",
+        s = {"<CMD>lua require('package-info').show({ force = true })<CR>", "Show Latest Package Versions"},
+        d = {"<CMD>lua require('package-info').delete()<CR>", "Delete Package"},
+        p = {"<CMD>lua require('package-info').change_version()<CR>", "Change Package Version"},
+        i = {"<CMD>lua require('package-info').install()<CR>", "Install a new Package"},
+        r = {"<CMD>lua require('package-info').reinstall()<CR>", "Reinstall Dependencies"}
       },
 
       -- Spectre replace
       r = {
         name = "Replace",
-        r = {"<cmd>lua require('spectre').open()<CR>", "Replace"},
-        w = {"<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Replace Word"},
-        f = {"<cmd>lua require('spectre').open_file_search()<CR>", "Replace Buffer"}
+        r = {"<CMD>lua require('spectre').open()<CR>", "Replace"},
+        w = {"<CMD>lua require('spectre').open_visual({select_word=true})<CR>", "Replace Word"},
+        f = {"<CMD>lua require('spectre').open_file_search()<CR>", "Replace Buffer"}
       },
 
       -- Treesitter
