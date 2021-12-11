@@ -171,7 +171,7 @@ return packer.startup(function(use)
   use { -- Dashboard
     -- 'glepnir/dashboard-nvim',
     'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
       require('plugins.dashboard').setup()
     end
@@ -279,12 +279,12 @@ return packer.startup(function(use)
   }
   use { -- Open urls with gx
     'felipec/vim-sanegx',
-    event = 'BufRead',
+    event = 'BufRead'
   }
   use { -- Live edit html, css and javascript
     'turbio/bracey.vim',
     cmd = {'Bracey', 'BracyStop', 'BraceyReload', 'BraceyEval'},
-    run = 'npm install --prefix server',
+    run = 'npm install --prefix server'
   }
   use { -- Notifications
     'rcarriga/nvim-notify'
