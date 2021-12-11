@@ -289,6 +289,28 @@ return packer.startup(function(use)
   use { -- Notifications
     'rcarriga/nvim-notify'
   }
+  use { -- Automatically create dir for file if non existent
+    'jghauser/mkdir.nvim',
+    event = "BufWritePre",
+    config = function()
+      require('mkdir')
+    end
+  }
+  use { -- Cheatsheet
+    "RishabhRD/nvim-cheat.sh",
+    requires = "RishabhRD/popfix",
+    config = function()
+      vim.g.cheat_default_window_layout = "float"
+    end,
+    cmd = {"Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments"},
+    keys = "<leader>?"
+  }
+  use { -- Treesitter spellcheck
+    'lewis6991/spellsitter.nvim',
+    config = function()
+      require('plugins.spellsitter').setup()
+    end
+  }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode

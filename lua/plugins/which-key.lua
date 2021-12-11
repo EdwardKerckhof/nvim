@@ -74,6 +74,7 @@ M.config = function()
       ["f"] = {"<cmd>Telescope find_files<CR>", "Find File"},
       ["h"] = {"<cmd>nohlsearch<CR>", "No Highlight"},
       ["P"] = {"<cmd>Telescope projects<CR>", "Projects"},
+      ["?"] = {"<cmd>Cheat<CR>", "Cheatsheet"},
       b = {
         name = "Buffers",
         j = {"<cmd>BufferPick<CR>", "Jump"},
@@ -173,7 +174,7 @@ M.config = function()
         name = "Bracey live server",
         s = {"<cmd>Bracey<cr>", "Start Live Server"},
         S = {"<cmd>BraceyStop<cr>", "Stop Live Server"},
-        r = {"<cmd>BraceyReload<cr>", "Reload Live Server"},
+        r = {"<cmd>BraceyReload<cr>", "Reload Live Server"}
       },
 
       -- DAP Debugger

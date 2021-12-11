@@ -32,7 +32,9 @@ local options = {
   wrap = true, -- wraps lines
   scrolloff = 8, -- scroll offset (8 lines)
   sidescrolloff = 8,
-  guifont = "mononoki:h13" -- the font used in graphical neovim applications
+  guifont = "mononoki:h13", -- the font used in graphical neovim applications
+  spell = true,
+  spelllang = "en"
 }
 
 vim.cmd('filetype plugin indent on')
@@ -40,11 +42,7 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 
 vim.opt.shortmess:append "c"
 
-if vim.g.nvui then
-  -- NVUI Font
-  vim.cmd [[NvuiCmdFontFamily mononoki]]
-  vim.cmd [[NvuiCmdFontSize 13]]
-  vim.cmd [[NvuiScrollAnimationDuration 0.2]]
-end
+-- Neovide
+vim.g.neovide_refresh_rate = 140
 
 for k, v in pairs(options) do vim.opt[k] = v end
