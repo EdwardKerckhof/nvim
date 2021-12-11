@@ -4,37 +4,9 @@ local M = {}
 require('lsp/language-servers')
 require('lsp/diagnostic-signs')
 
-vim.g.completeopt="menu,menuone,noselect,noinsert"
+vim.g.completeopt = "menu,menuone,noselect,noinsert"
 
 M.methods = {}
-
-M.icons = {
-  Class = " ",
-  Color = " ",
-  Constant = "ﲀ ",
-  Constructor = " ",
-  Enum = "練",
-  EnumMember = " ",
-  Event = " ",
-  Field = " ",
-  File = "",
-  Folder = " ",
-  Function = " ",
-  Interface = "ﰮ ",
-  Keyword = " ",
-  Method = " ",
-  Module = " ",
-  Operator = "",
-  Property = " ",
-  Reference = " ",
-  Snippet = " ",
-  Struct = " ",
-  Text = " ",
-  TypeParameter = " ",
-  Unit = "塞",
-  Value = " ",
-  Variable = " ",
-}
 
 ---checks if the character preceding the cursor is a space character
 ---@return boolean true if it is a space character, false otherwise
@@ -62,11 +34,7 @@ M.methods.feedkeys = feedkeys
 local is_emmet_active = function()
   local clients = vim.lsp.buf_get_clients()
 
-  for _, client in pairs(clients) do
-    if client.name == "emmet_ls" then
-      return true
-    end
-  end
+  for _, client in pairs(clients) do if client.name == "emmet_ls" then return true end end
   return false
 end
 M.methods.is_emmet_active = is_emmet_active
@@ -76,23 +44,17 @@ M.methods.is_emmet_active = is_emmet_active
 ---@return boolean true if a jumpable luasnip field is found while inside a snippet
 local function jumpable(dir)
   local luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not luasnip_ok then
-    return
-  end
+  if not luasnip_ok then return end
 
   local win_get_cursor = vim.api.nvim_win_get_cursor
   local get_current_buf = vim.api.nvim_get_current_buf
 
   local function inside_snippet()
     -- for outdated versions of luasnip
-    if not luasnip.session.current_nodes then
-      return false
-    end
+    if not luasnip.session.current_nodes then return false end
 
     local node = luasnip.session.current_nodes[get_current_buf()]
-    if not node then
-      return false
-    end
+    if not node then return false end
 
     local snip_begin_pos, snip_end_pos = node.parent.snippet.mark:pos_begin_end()
     local pos = win_get_cursor(0)
@@ -104,16 +66,12 @@ local function jumpable(dir)
   ---@return boolean true if a node is found, false otherwise
   local function seek_luasnip_cursor_node()
     -- for outdated versions of luasnip
-    if not luasnip.session.current_nodes then
-      return false
-    end
+    if not luasnip.session.current_nodes then return false end
 
     local pos = win_get_cursor(0)
     pos[1] = pos[1] - 1
     local node = luasnip.session.current_nodes[get_current_buf()]
-    if not node then
-      return false
-    end
+    if not node then return false end
 
     local snippet = node.parent.snippet
     local exit_node = snippet.insert_nodes[0]
@@ -133,8 +91,7 @@ local function jumpable(dir)
     while node ~= nil and node.next ~= nil and node ~= snippet do
       local n_next = node.next
       local next_pos = n_next and n_next.mark:pos_begin()
-      local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1])
-        or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
+      local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1]) or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
 
       -- Past unmarked exit node, exit early
       if n_next == nil or n_next == snippet.next then
@@ -180,24 +137,17 @@ local function jumpable(dir)
 end
 M.methods.jumpable = jumpable
 
-M.config = function ()
+M.config = function()
   local status_ok, cmp = pcall(require, "cmp")
-  if not status_ok then
-    return
-  end
+  if not status_ok then return end
   local status_luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not status_luasnip_ok then
-    return
-  end
+  if not status_luasnip_ok then return end
   local status_kind_ok, lspkind = pcall(require, "lspkind")
-  if not status_kind_ok then
-    return
-  end
+  if not status_kind_ok then return end
 
+  local lspKind = require 'user.lsp-kind'
   local kinds = vim.lsp.protocol.CompletionItemKind
-  for i, kind in ipairs(kinds) do
-    kinds[i] = M.icons[kind] or kind
-  end
+  for i, kind in ipairs(kinds) do kinds[i] = lspKind.cmp_kind[kind] or kind end
 
   -- Automatically show line diagnostics in hover window
   vim.o.updatetime = 250
@@ -207,31 +157,21 @@ M.config = function ()
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
-      end,
+      end
     },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
+    documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}},
     formatting = {
       format = lspkind.cmp_format({
         with_text = true,
         maxwidth = 50,
-        before = function (_, vim_item)
+        before = function(_, vim_item)
           return vim_item
         end
       })
     },
     sources = {
-      { name = "nvim_lsp" },
-      { name = "path" },
-      { name = "luasnip" },
-      { name = "cmp_tabnine" },
-      { name = "nvim_lua" },
-      { name = "buffer" },
-      { name = "calc" },
-      { name = "emoji" },
-      { name = "treesitter" },
-      { name = "crates" },
+      {name = "nvim_lsp"}, {name = "path"}, {name = "luasnip"}, {name = "cmp_tabnine"}, {name = "nvim_lua"}, {name = "buffer"}, {name = "calc"},
+      {name = "emoji"}, {name = "treesitter"}, {name = "crates"}
     },
     mapping = {
       ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -252,10 +192,7 @@ M.config = function ()
         else
           fallback()
         end
-      end, {
-        "i",
-        "s",
-      }),
+      end, {"i", "s"}),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -264,14 +201,11 @@ M.config = function ()
         else
           fallback()
         end
-      end, {
-        "i",
-        "s",
-      }),
+      end, {"i", "s"}),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
+      ['<CR>'] = cmp.mapping.confirm({select = true})
+    }
   })
 end
 
