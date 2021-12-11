@@ -45,4 +45,7 @@ vim.opt.shortmess:append "c"
 -- Neovide
 vim.g.neovide_refresh_rate = 140
 
+-- Notifications
+vim.notify = require('notify')
+
 for k, v in pairs(options) do vim.opt[k] = v end
