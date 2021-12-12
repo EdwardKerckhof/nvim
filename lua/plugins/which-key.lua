@@ -4,7 +4,7 @@ local localOpts = {}
 
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({cmd = "lazygit", hidden = true, direction = "float"})
-function _lazygit_toggle()
+function Lazygit_toggle()
   lazygit:toggle()
 end
 
@@ -116,27 +116,24 @@ M.config = function()
         C = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
         d = {"<CMD>DiffviewOpen<CR>", "Git Diff Open"},
         D = {"<CMD>DiffviewClose<CR>", "Git Diff Close"},
-        g = {"<CMD>lua _lazygit_toggle()<CR>", "Lazy Git"}
+        g = {"<CMD>lua Lazygit_toggle()<CR>", "Lazy Git"}
       },
 
       -- LSP
       l = {
         name = "LSP",
-        a = {"<CMD>lua require('lvim.core.telescope').code_actions()<CR>", "Code Action"},
-        d = {"<CMD>Telescope lsp_document_diagnostics<CR>", "Document Diagnostics"},
-        w = {"<CMD>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics"},
+        a = {"<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
+        d = {"<CMD>Telescope diagnostics bufnr=0<CR>", "Document Diagnostics"},
+        w = {"<CMD>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Workspace Folder"},
+        W = {"<CMD>lua vim.lsp.buf.add_workspace_folder()<CR>", "Remove Workspace Folder"},
         f = {"<CMD>lua vim.lsp.buf.formatting()<CR>", "Format"},
         i = {"<CMD>LspInfo<CR>", "Info"},
         I = {"<CMD>LspInstallInfo<CR>", "Installer Info"},
-        j = {"<CMD>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Next Diagnostic"},
-        k = {"<CMD>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<CR>", "Prev Diagnostic"},
+        j = {"<CMD>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic"},
+        k = {"<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>", "Prev Diagnostic"},
+        K = {"<CMD>lua vim.lsp.buf.hover()<CR>", "Hover commands"},
         l = {"<CMD>lua vim.lsp.codelens.run()<CR>", "CodeLens Action"},
-        p = {
-          name = "Peek",
-          d = {"<CMD>lua require('lvim.lsp.peek').Peek('definition')<CR>", "Definition"},
-          t = {"<CMD>lua require('lvim.lsp.peek').Peek('typeDefinition')<CR>", "Type Definition"},
-          i = {"<CMD>lua require('lvim.lsp.peek').Peek('implementation')<CR>", "Implementation"}
-        },
+        t = {"<CMD>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
         q = {"<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>", "Quickfix"},
         r = {"<CMD>lua vim.lsp.buf.rename()<CR>", "Rename"},
         s = {"<CMD>Telescope lsp_document_symbols<CR>", "Document Symbols"},
