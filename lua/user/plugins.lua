@@ -337,6 +337,12 @@ return packer.startup(function(use)
       require('plugins.lspsaga').setup()
     end
   }
+  use {
+    'lewis6991/impatient.nvim',
+    config = function()
+      require('plugins.impatient').setup()
+    end
+  }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
   use {'tpope/vim-surround'} -- Change surroundings
   use {'folke/zen-mode.nvim'} -- Zen mode

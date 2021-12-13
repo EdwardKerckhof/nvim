@@ -1,10 +1,10 @@
 -- LSPSaga (https://github.com/tami5/lspsaga.nvim/wiki)
+local ok, lspsaga = pcall(require, "lspsaga")
+if not ok then return end
+
 local M = {}
 
 M.setup = function()
-  local ok, lspsaga = pcall(require, "lspsaga")
-  if not ok then return end
-
   lspsaga.setup {
     debug = false,
     use_saga_diagnostic_sign = true,
