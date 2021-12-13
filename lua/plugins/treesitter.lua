@@ -14,10 +14,10 @@ M.setup = function()
   })
 
   treesitter.setup {
-    ensure_installed = {"maintained"},
+    ensure_installed = "maintained",
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
     highlight = {enable = true, additional_vim_regex_highlighting = true},
-    indent = { enable = true, disable = { "yaml" } },
+    indent = {enable = true, disable = {"yaml"}},
     autotag = { -- nvim-ts-autotag plugin
       enable = true
     },
