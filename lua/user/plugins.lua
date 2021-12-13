@@ -141,6 +141,8 @@ return packer.startup(function(use)
   }
   use { -- VSCode like renamer
     'filipdutescu/renamer.nvim',
+    branch = 'master',
+    requires = {'nvim-lua/plenary.nvim'},
     config = function()
       require('plugins.renamer').config()
     end
@@ -327,6 +329,12 @@ return packer.startup(function(use)
     requires = "MunifTanjim/nui.nvim",
     config = function()
       require('plugins.package-info').setup()
+    end
+  }
+  use { -- LSPSaga
+    'tami5/lspsaga.nvim',
+    config = function()
+      require('plugins.lspsaga').setup()
     end
   }
   use {'folke/lsp-colors.nvim'} -- automatic lsp colors
