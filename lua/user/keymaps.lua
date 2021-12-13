@@ -1,8 +1,13 @@
-vim.g.mapleader = " "
+local opts = {noremap = true, silent = true}
+local term_opts = {silent = true}
 
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+-- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+
+-- Remap space as leader key
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", {noremap = true, silent = true})
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -83,5 +88,5 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Command --
 -- Menu navigation
-keymap("c", "<C-j>",  'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } )
-keymap("c", "<C-k>",  'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } )
+keymap("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', {expr = true, noremap = true})
+keymap("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', {expr = true, noremap = true})

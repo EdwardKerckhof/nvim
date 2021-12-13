@@ -2,12 +2,6 @@
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then return end
 
-local Terminal = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({cmd = "lazygit", hidden = true, direction = "float"})
-function Lazygit_toggle()
-  lazygit:toggle()
-end
-
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -134,7 +128,7 @@ local mappings = {
     C = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"},
     d = {"<CMD>DiffviewOpen<CR>", "Git Diff Open"},
     D = {"<CMD>DiffviewClose<CR>", "Git Diff Close"},
-    g = {"<CMD>lua Lazygit_toggle()<CR>", "Lazy Git"}
+    g = {"<CMD>lua _LAZYGIT_TOGGLE()<CR>", "LazyGit"}
   },
 
   -- LSP

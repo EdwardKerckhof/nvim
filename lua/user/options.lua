@@ -37,15 +37,12 @@ local options = {
   spelllang = "en"
 }
 
-vim.cmd('filetype plugin indent on')
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-
 vim.opt.shortmess:append "c"
-
--- Neovide
-vim.g.neovide_refresh_rate = 140
 
 -- Notifications
 vim.notify = require('notify')
 
 for k, v in pairs(options) do vim.opt[k] = v end
+
+vim.cmd('filetype plugin indent on')
+vim.cmd "set whichwrap+=<,>,[,],h,l"

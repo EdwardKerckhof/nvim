@@ -1,11 +1,10 @@
+local status_ok, toggleterm = pcall(require, "toggleterm")
+if not status_ok then return end
+
 local M = {}
 
 M.setup = function()
-  local status_ok, toggleterm = pcall(require, "toggleterm")
-  if not status_ok then return end
-
   toggleterm.setup {
-    on_config_done = nil,
     size = 20,
     open_mapping = [[<C-t>]],
     hide_numbers = true,
@@ -20,6 +19,13 @@ M.setup = function()
     shell = "zsh", -- change the default shell
     float_opts = {border = "curved", winblend = 0, highlights = {border = "Normal", background = "Normal"}}
   }
+end
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({cmd = "lazygit", hidden = true, direction = "float" })
+
+function _LAZYGIT_TOGGLE()
+  lazygit:toggle()
 end
 
 return M

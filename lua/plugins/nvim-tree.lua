@@ -1,11 +1,11 @@
 -- Nvim tree (https://github.com/kyazdani42/nvim-tree.lua)
+local ok, nvimtree = pcall(require, "nvim-tree")
+if not ok then return end
+
 local M = {}
 local kind = require "user.lsp-kind"
 
 M.config = function()
-  local ok, nvimtree = pcall(require, "nvim-tree")
-  if not ok then return end
-
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_quit_on_open = 1
   vim.g.nvim_tree_git_hl = 1
