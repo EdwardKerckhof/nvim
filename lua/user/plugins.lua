@@ -38,7 +38,7 @@ return packer.startup(function(use)
     run = ':TSUpdate',
     event = 'BufWinEnter',
     config = function(_)
-      require('plugins.treesitter').config()
+      require('plugins.treesitter').setup()
     end
   }
   use {'kyazdani42/nvim-web-devicons'} -- Web devicons needed for a lot of plugins
