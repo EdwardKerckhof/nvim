@@ -22,8 +22,10 @@ vim.cmd [[
     autocmd!
     autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 1024 * 1024 | exec DisableSyntaxTreesitter() | endif
   augroup END
-]]
 
--- Autoformat Buffers on Save
-vim.cmd [[autocmd BufWritePre *.ts,*.lua,*.css,*.html,*.tsx,*.js,*.jsx,*.json,*.rs,*.html,*.graphql,*.c,*.md :Format]]
-vim.cmd [[autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js :EslintFixAll]]
+  augroup AutoFormat
+    autocmd!
+    autocmd BufWritePre *.ts,*.lua,*.css,*.html,*.tsx,*.js,*.jsx,*.json,*.rs,*.html,*.graphql,*.c,*.md :Format
+    autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js :EslintFixAll
+  augroup END
+]]

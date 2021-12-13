@@ -1,5 +1,7 @@
+local status_ok, lspconfig = pcall(require, "lspconfig")
+if not status_ok then return end
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspconfig = require 'lspconfig'
 local configs = require 'lspconfig/configs'
 
 local sumneko_root_path = '/home/edward/.config/nvim/lua-language-server'

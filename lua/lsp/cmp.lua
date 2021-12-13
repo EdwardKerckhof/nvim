@@ -10,8 +10,8 @@ if not status_kind_ok then return end
 
 local M = {}
 
-require('lsp/language-servers')
-require('lsp/diagnostic-signs')
+-- require('lsp/language-servers')
+-- require('lsp/diagnostic-signs')
 
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 

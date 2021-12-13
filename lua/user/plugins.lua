@@ -61,7 +61,6 @@ return packer.startup(function(use)
   }
 
   -- CMP / LSP
-  use {'neovim/nvim-lspconfig'}
   use {'hrsh7th/cmp-nvim-lsp'}
   use {'hrsh7th/cmp-nvim-lua'}
   use {'hrsh7th/cmp-buffer'}
@@ -73,9 +72,10 @@ return packer.startup(function(use)
     'hrsh7th/nvim-cmp',
     config = function()
       require('lsp.cmp').setup()
-    end,
-    requires = {'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets'}
+    end
   }
+
+  -- snippets
   use {
     'L3MON4D3/LuaSnip',
     config = function()
@@ -84,9 +84,14 @@ return packer.startup(function(use)
   }
   use {'saadparwaiz1/cmp_luasnip'}
 
-  -- LSP Installer
+  use {"rafamadriz/friendly-snippets"} -- a bunch of snippets to use
+
+  -- LSP
+  use {'neovim/nvim-lspconfig'}
   use {'williamboman/nvim-lsp-installer'}
   use {'onsails/lspkind-nvim'}
+  use {'tamago324/nlsp-settings.nvim'}
+
   use { -- Colorscheme
     'folke/tokyonight.nvim',
     config = function()
