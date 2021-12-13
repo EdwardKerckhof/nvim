@@ -1,4 +1,13 @@
 -- CMP (https://github.com/hrsh7th/nvim-cmp)
+local status_ok, cmp = pcall(require, "cmp")
+if not status_ok then return end
+
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then return end
+
+local status_kind_ok, lspkind = pcall(require, "lspkind")
+if not status_kind_ok then return end
+
 local M = {}
 
 require('lsp/language-servers')
@@ -43,9 +52,6 @@ M.methods.is_emmet_active = is_emmet_active
 ---@param dir number 1 for forward, -1 for backward; defaults to 1
 ---@return boolean true if a jumpable luasnip field is found while inside a snippet
 local function jumpable(dir)
-  local luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not luasnip_ok then return end
-
   local win_get_cursor = vim.api.nvim_win_get_cursor
   local get_current_buf = vim.api.nvim_get_current_buf
 
@@ -138,12 +144,6 @@ end
 M.methods.jumpable = jumpable
 
 M.setup = function()
-  local status_ok, cmp = pcall(require, "cmp")
-  if not status_ok then return end
-  local status_luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not status_luasnip_ok then return end
-  local status_kind_ok, lspkind = pcall(require, "lspkind")
-  if not status_kind_ok then return end
 
   local lspKind = require 'user.lsp-kind'
   local kinds = vim.lsp.protocol.CompletionItemKind
