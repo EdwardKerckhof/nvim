@@ -60,7 +60,7 @@ return packer.startup(function(use)
     end
   }
 
-  -- CMP / LSP
+  -- CMP
   use {'hrsh7th/cmp-nvim-lsp'}
   use {'hrsh7th/cmp-nvim-lua'}
   use {'hrsh7th/cmp-buffer'}
@@ -91,6 +91,7 @@ return packer.startup(function(use)
   use {'williamboman/nvim-lsp-installer'}
   use {'onsails/lspkind-nvim'}
   use {'tamago324/nlsp-settings.nvim'}
+  use {'jose-elias-alvarez/null-ls.nvim'}
 
   use { -- Colorscheme
     'folke/tokyonight.nvim',

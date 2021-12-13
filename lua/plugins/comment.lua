@@ -1,14 +1,13 @@
 -- Comment.nvim (https://github.com/numToStr/Comment.nvim)
-  local status_ok, nvim_comment = pcall(require, "Comment")
-  if not status_ok then
-    return
-  end
+local status_ok, nvim_comment = pcall(require, "Comment")
+if not status_ok then
+  return
+end
 
 local M = {}
 local commentOpts = {}
 
 M.config = function ()
-
   commentOpts = {
     active = true,
     on_config_done = nil,
