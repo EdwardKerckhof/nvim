@@ -4,7 +4,7 @@ if not status_ok then return end
 
 local M = {}
 
-M.config = function()
+M.setup = function()
   local cmpap_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
   if not cmpap_ok then return end
   local cmp_ok, cmp = pcall(require, 'cmp')

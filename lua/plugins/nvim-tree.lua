@@ -5,7 +5,7 @@ if not ok then return end
 local M = {}
 local kind = require "user.lsp-kind"
 
-M.config = function()
+M.setup = function()
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_quit_on_open = 1
   vim.g.nvim_tree_git_hl = 1

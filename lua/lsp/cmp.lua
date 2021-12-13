@@ -137,7 +137,7 @@ local function jumpable(dir)
 end
 M.methods.jumpable = jumpable
 
-M.config = function()
+M.setup = function()
   local status_ok, cmp = pcall(require, "cmp")
   if not status_ok then return end
   local status_luasnip_ok, luasnip = pcall(require, "luasnip")

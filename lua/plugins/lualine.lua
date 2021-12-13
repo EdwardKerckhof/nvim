@@ -128,7 +128,7 @@ local default_colors = {
   git = {change = "#ECBE7B", add = "#98be65", delete = "#ec5f67", conflict = "#bb7a61"}
 }
 
-M.config = function()
+M.setup = function()
   local colors = default_colors
   local themes = require("user.theme").colors
   local _time = os.date "*t"

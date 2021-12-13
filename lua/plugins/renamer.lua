@@ -1,7 +1,7 @@
 -- VSCode like renamer (https://github.com/filipdutescu/renamer.nvim)
 local M = {}
 
-M.config = function()
+M.setup = function()
   local status_ok, renamer = pcall(require, "renamer")
   if not status_ok then return end
 

@@ -32,8 +32,9 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
   use {'wbthomason/packer.nvim'} -- Have packer manage itself
-  use {'nvim-lua/plenary.nvim'}
+  use {'nvim-lua/plenary.nvim'} -- Useful lua functions used by a lot of plugins
   use {'nvim-lua/popup.nvim'} -- An implementation of the Popup API from vim in Neovim
+
   use { -- Treesitter
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -50,11 +51,12 @@ return packer.startup(function(use)
     event = 'BufRead',
     after = 'nvim-treesitter'
   }
+
   use { -- Lualine
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
-      require('plugins.lualine').config()
+      require('plugins.lualine').setup()
     end
   }
 
@@ -70,7 +72,7 @@ return packer.startup(function(use)
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require('lsp.cmp').config()
+      require('lsp.cmp').setup()
     end,
     requires = {'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets'}
   }
@@ -96,20 +98,20 @@ return packer.startup(function(use)
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('plugins.bufferline').config()
+      require('plugins.bufferline').setup()
     end
   }
   use { -- File tree explorer
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('plugins.nvim-tree').config()
+      require('plugins.nvim-tree').setup()
     end
   }
   use { -- Nvim autopairs
     'windwp/nvim-autopairs',
     config = function()
-      require('plugins.autopairs').config()
+      require('plugins.autopairs').setup()
     end
   }
   use { -- Whichkey
@@ -145,7 +147,7 @@ return packer.startup(function(use)
     branch = 'master',
     requires = {'nvim-lua/plenary.nvim'},
     config = function()
-      require('plugins.renamer').config()
+      require('plugins.renamer').setup()
     end
   }
   use { -- Commenter
