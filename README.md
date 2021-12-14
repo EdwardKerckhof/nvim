@@ -42,3 +42,4 @@ Next we need to install python support (node is optional)
   npm i -g neovim
   ```
 
+Credits: https://github.com/ChristianChiarulli/nvim
