@@ -6,17 +6,51 @@ local function clock()
   return kind.icons.clock .. os.date "%H:%M"
 end
 
+local function hide_in_width()
+  return vim.fn.winwidth(0) > 80
+end
+
 local function lsp_progress()
   local messages = vim.lsp.util.get_progress_messages()
-  if #messages == 0 then return "" end
+  if #messages == 0 then
+    return ""
+  end
   local status = {}
-  for _, msg in pairs(messages) do table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or "")) end
+  for _, msg in pairs(messages) do
+    table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or ""))
+  end
   -- local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
   -- local spinners = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }
   -- local spinners = { " ", " ", " ", " ", " ", " ", " ", " ", " " }
   local spinners = {
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
   }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 60) % #spinners
@@ -27,13 +61,21 @@ vim.cmd [[autocmd User LspProgressUpdate let &ro = &ro]]
 
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
-  if gitsigns then return {added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed} end
+  if gitsigns then
+    return { added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed }
+  end
 end
 
 local function testing()
-  if vim.g.testing_status == "running" then return " " end
-  if vim.g.testing_status == "fail" then return "" end
-  if vim.g.testing_status == "pass" then return " " end
+  if vim.g.testing_status == "running" then
+    return " "
+  end
+  if vim.g.testing_status == "fail" then
+    return ""
+  end
+  if vim.g.testing_status == "pass" then
+    return " "
+  end
   return nil
 end
 local function using_session()
@@ -44,21 +86,21 @@ local mode = function()
   local mod = vim.fn.mode()
   local _time = os.date "*t"
   local selector = math.floor(_time.hour / 8) + 1
-  local normal_icons = {"  ", "  ", "  "}
+  local normal_icons = { "  ", "  ", "  " }
   if mod == "n" or mod == "no" or mod == "nov" then
     return normal_icons[selector]
   elseif mod == "i" or mod == "ic" or mod == "ix" then
-    local insert_icons = {"  ", "  ", "  "}
+    local insert_icons = { "  ", "  ", "  " }
     return insert_icons[selector]
   elseif mod == "V" or mod == "v" or mod == "vs" or mod == "Vs" or mod == "cv" then
-    local verbose_icons = {" 勇", "  ", "  "}
+    local verbose_icons = { " 勇", "  ", "  " }
     return verbose_icons[selector]
   elseif mod == "c" or mod == "ce" then
-    local command_icons = {"  ", "  ", "  "}
+    local command_icons = { "  ", "  ", "  " }
 
     return command_icons[selector]
   elseif mod == "r" or mod == "rm" or mod == "r?" or mod == "R" or mod == "Rc" or mod == "Rv" or mod == "Rv" then
-    local replace_icons = {"  ", "  ", "  "}
+    local replace_icons = { "  ", "  ", "  " }
     return replace_icons[selector]
   end
   return normal_icons[selector]
@@ -80,7 +122,7 @@ local file_icon_colors = {
   Green = "#8FAA54",
   LightGreen = "#31B53E",
   White = "#FFFFFF",
-  LightBlue = "#5fd7ff"
+  LightBlue = "#5fd7ff",
 }
 
 local function get_file_info()
@@ -96,7 +138,9 @@ local function get_file_icon()
   end
   local f_name, f_extension = get_file_info()
   icon = devicons.get_icon(f_name, f_extension)
-  if icon == nil then icon = kind.icons.question end
+  if icon == nil then
+    icon = kind.icons.question
+  end
   return icon
 end
 
@@ -105,11 +149,17 @@ local function get_file_icon_color()
   local has_devicons, devicons = pcall(require, "nvim-web-devicons")
   if has_devicons then
     local icon, iconhl = devicons.get_icon(f_name, f_ext)
-    if icon ~= nil then return vim.fn.synIDattr(vim.fn.hlID(iconhl), "fg") end
+    if icon ~= nil then
+      return vim.fn.synIDattr(vim.fn.hlID(iconhl), "fg")
+    end
   end
 
   local icon = get_file_icon():match "%S+"
-  for k, _ in pairs(kind.file_icons) do if vim.fn.index(kind.file_icons[k], icon) ~= -1 then return file_icon_colors[k] end end
+  for k, _ in pairs(kind.file_icons) do
+    if vim.fn.index(kind.file_icons[k], icon) ~= -1 then
+      return file_icon_colors[k]
+    end
+  end
 end
 
 local default_colors = {
@@ -125,7 +175,7 @@ local default_colors = {
   magenta = "#c678dd",
   blue = "#51afef",
   red = "#ec5f67",
-  git = {change = "#ECBE7B", add = "#98be65", delete = "#ec5f67", conflict = "#bb7a61"}
+  git = { change = "#ECBE7B", add = "#98be65", delete = "#ec5f67", conflict = "#bb7a61" },
 }
 
 M.setup = function()
@@ -155,7 +205,7 @@ M.setup = function()
     rm = colors.cyan,
     ["r?"] = colors.cyan,
     ["!"] = colors.red,
-    t = colors.red
+    t = colors.red,
   }
   local conditions = {
     buffer_not_empty = function()
@@ -171,19 +221,24 @@ M.setup = function()
       local filepath = vim.fn.expand "%:p:h"
       local gitdir = vim.fn.finddir(".git", filepath .. ";")
       return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end
+    end,
   }
 
   -- Config
   local config = {
     options = {
       icons_enabled = true,
-      component_separators = {left = "", right = ""},
-      section_separators = {left = "", right = ""},
-      theme = {normal = {c = {fg = colors.fg, bg = colors.bg}}, inactive = {c = {fg = colors.fg, bg = colors.bg_alt}}},
-      disabled_filetypes = {"dashboard", "NvimTree", "Outline", "alpha"}
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+      theme = {
+        normal = { c = { fg = colors.fg, bg = colors.bg } },
+        inactive = {
+          c = { fg = colors.fg, bg = colors.bg_alt },
+        },
+      },
+      disabled_filetypes = { "alpha", "dashboard", "NvimTree", "toggleterm", "quickfix" },
     },
-    sections = {lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {}},
+    sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
     inactive_sections = {
       lualine_a = {},
       lualine_v = {},
@@ -192,17 +247,20 @@ M.setup = function()
       lualine_c = {
         {
           function()
-            vim.api.nvim_command("hi! LualineModeInactive guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg_alt)
+            vim.api.nvim_command(
+              "hi! LualineModeInactive guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg_alt
+            )
             local selector = math.floor(_time.hour / 8) + 1
-            local icns = {"  ", "  ", "  "}
+            local icns = { "  ", "  ", "  " }
             return icns[selector]
           end,
           color = "LualineModeInactive",
-          padding = {left = 1, right = 0}
-        }, {"filename", cond = conditions.buffer_not_empty, color = {fg = colors.blue, gui = "bold"}}
+          padding = { left = 1, right = 0 },
+        },
+        { "filename", cond = conditions.buffer_not_empty, color = { fg = colors.blue, gui = "bold" } },
       },
-      lualine_x = {}
-    }
+      lualine_x = {},
+    },
   }
 
   -- Inserts a component in lualine_c at left section
@@ -221,30 +279,38 @@ M.setup = function()
       return mode()
     end,
     color = "LualineMode",
-    padding = {left = 1, right = 0}
+    padding = { left = 1, right = 0 },
   }
-  ins_left {"b:gitsigns_head", icon = " ", cond = conditions.check_git_workspace, color = {fg = colors.blue}, padding = 0}
+  ins_left {
+    "b:gitsigns_head",
+    icon = " ",
+    cond = conditions.check_git_workspace,
+    color = { fg = colors.blue },
+    padding = 0,
+  }
 
   ins_left {
     function()
       return ""
     end,
-    color = {fg = colors.cyan},
-    cond = conditions.hide_in_width
+    color = { fg = colors.cyan },
+    cond = conditions.hide_in_width,
   }
 
   ins_left {
     function()
       vim.api.nvim_command("hi! LualineFileIconColor guifg=" .. get_file_icon_color() .. " guibg=" .. colors.bg)
       local winnr = vim.api.nvim_win_get_number(vim.api.nvim_get_current_win())
-      if winnr > 10 then winnr = 10 end
+      if winnr > 10 then
+        winnr = 10
+      end
       local win = kind.numbers[winnr]
       return win .. " " .. get_file_icon()
     end,
-    padding = {left = 2, right = 0},
+    padding = { left = 2, right = 0 },
     cond = conditions.buffer_not_empty,
     color = "LualineFileIconColor",
-    gui = "bold"
+    gui = "bold",
   }
 
   ins_left {
@@ -253,29 +319,35 @@ M.setup = function()
       local ftype = vim.fn.expand "%:e"
       local cwd = vim.api.nvim_call_function("getcwd", {})
       local show_name = vim.fn.expand "%:t"
-      if #cwd > 0 and #ftype > 0 then show_name = fname:sub(#cwd + 2) end
+      if #cwd > 0 and #ftype > 0 then
+        show_name = fname:sub(#cwd + 2)
+      end
       return show_name .. "%{&readonly?'  ':''}" .. "%{&modified?'  ':''}"
     end,
     cond = conditions.buffer_not_empty,
-    padding = {left = 1, right = 1},
-    color = {fg = colors.fg, gui = "bold"}
+    padding = { left = 1, right = 1 },
+    color = { fg = colors.fg, gui = "bold" },
   }
 
   ins_left {
     "diff",
     source = diff_source,
-    symbols = {added = "  ", modified = "柳", removed = " "},
-    diff_color = {added = {fg = colors.git.add}, modified = {fg = colors.git.change}, removed = {fg = colors.git.delete}},
-    color = {},
-    cond = nil
+    symbols = { added = "  ", modified = "柳", removed = " " },
+    diff_color = {
+      added = { fg = colors.git.add },
+      modified = { fg = colors.git.change },
+      removed = { fg = colors.git.delete },
+    },
+    color = hide_in_width,
+    cond = nil,
   }
 
   ins_left {
     function()
       return ""
     end,
-    color = {fg = colors.green},
-    cond = conditions.hide_in_width
+    color = { fg = colors.green },
+    cond = conditions.hide_in_width,
   }
   ins_left {
     provider = function()
@@ -284,9 +356,9 @@ M.setup = function()
     enabled = function()
       return testing() ~= nil
     end,
-    hl = {fg = colors.fg},
+    hl = { fg = colors.fg },
     left_sep = " ",
-    right_sep = {str = " |", hl = {fg = colors.fg}}
+    right_sep = { str = " |", hl = { fg = colors.fg } },
   }
 
   ins_left {
@@ -300,42 +372,48 @@ M.setup = function()
     enabled = function()
       return using_session()
     end,
-    hl = {fg = colors.fg}
+    hl = { fg = colors.fg },
   }
 
-  ins_left {lsp_progress, cond = conditions.hide_small}
+  ins_left { lsp_progress, cond = conditions.hide_small }
 
   -- Insert mid section. You can make any number of sections in neovim :)
   -- for lualine it's any number greater then 2
   ins_left {
     function()
       return "%="
-    end
+    end,
   }
 
   ins_right {
     function()
-      if not vim.bo.readonly or not vim.bo.modifiable then return "" end
+      if not vim.bo.readonly or not vim.bo.modifiable then
+        return ""
+      end
       return "" -- """
     end,
-    color = {fg = colors.red}
+    color = { fg = colors.red },
   }
 
   ins_right {
     function()
-      if next(vim.treesitter.highlighter.active) then return "  " end
+      if next(vim.treesitter.highlighter.active) then
+        return "  "
+      end
       return ""
     end,
     padding = 0,
-    color = {fg = colors.green},
-    cond = conditions.hide_in_width
+    color = { fg = colors.green },
+    cond = conditions.hide_in_width,
   }
   ins_right {
     function(msg)
       msg = msg or kind.icons.ls_inactive .. "LS Inactive"
       local buf_clients = vim.lsp.buf_get_clients()
       if next(buf_clients) == nil then
-        if type(msg) == "boolean" or #msg == 0 then return kind.icons.ls_inactive .. "LS Inactive" end
+        if type(msg) == "boolean" or #msg == 0 then
+          return kind.icons.ls_inactive .. "LS Inactive"
+        end
         return msg
       end
       local buf_client_names = {}
@@ -344,7 +422,9 @@ M.setup = function()
       for _, client in pairs(buf_clients) do
         if client.name ~= "null-ls" then
           local _added_client = client.name
-          if trim then _added_client = string.sub(client.name, 1, 4) end
+          if trim then
+            _added_client = string.sub(client.name, 1, 4)
+          end
           table.insert(buf_client_names, _added_client)
         end
       end
@@ -375,16 +455,18 @@ M.setup = function()
 
       return kind.icons.ls_active .. table.concat(buf_client_names, ", ")
     end,
-    color = {fg = colors.fg},
-    cond = conditions.hide_in_width
+    color = { fg = colors.fg },
+    cond = conditions.hide_in_width,
   }
 
   ins_right {
     function()
       local function format_file_size(file)
         local size = vim.fn.getfsize(file)
-        if size <= 0 then return "" end
-        local sufixes = {"b", "k", "m", "g"}
+        if size <= 0 then
+          return ""
+        end
+        local sufixes = { "b", "k", "m", "g" }
         local i = 1
         while size > 1024 do
           size = size / 1024
@@ -393,32 +475,42 @@ M.setup = function()
         return string.format("%.1f%s", size, sufixes[i])
       end
       local file = vim.fn.expand "%:p"
-      if string.len(file) == 0 then return "" end
+      if string.len(file) == 0 then
+        return ""
+      end
       return format_file_size(file)
     end,
-    cond = conditions.buffer_not_empty
+    cond = conditions.buffer_not_empty,
   }
-  ins_right {"fileformat", fmt = string.upper, icons_enabled = true, color = {fg = colors.green, gui = "bold"}, cond = conditions.hide_in_width}
+  ins_right {
+    "fileformat",
+    fmt = string.upper,
+    icons_enabled = true,
+    color = { fg = colors.green, gui = "bold" },
+    cond = conditions.hide_in_width,
+  }
 
-  ins_right {clock, cond = conditions.hide_in_width, color = {fg = colors.blue, bg = colors.bg}}
+  ins_right { clock, cond = conditions.hide_in_width, color = { fg = colors.blue, bg = colors.bg } }
 
   ins_right {
     function()
       local current_line = vim.fn.line "."
       local total_lines = vim.fn.line "$"
-      local chars = {"__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"}
+      local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
       local line_ratio = current_line / total_lines
       local index = math.ceil(line_ratio * #chars)
       return chars[index]
     end,
     padding = 0,
-    color = {fg = colors.yellow, bg = colors.bg},
-    cond = nil
+    color = { fg = colors.yellow, bg = colors.bg },
+    cond = nil,
   }
 
   -- Now don't forget to initialize lualine
   local status_ok, lualine = pcall(require, "lualine")
-  if not status_ok then return end
+  if not status_ok then
+    return
+  end
 
   lualine.setup(config)
 end

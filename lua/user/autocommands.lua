@@ -2,8 +2,11 @@
 vim.cmd [[
   augroup _general_settings
     autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
+    autocmd FileType qf,help,man,lspinfo,spectre_panel nnoremap <silent> <buffer> q :close<CR>
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 200}) 
+    autocmd CmdWinEnter * quit
+    autocmd BufWinEnter * :set formatoptions-=cro
+    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
   augroup _git
@@ -23,9 +26,9 @@ vim.cmd [[
     autocmd VimResized * tabdo wincmd = 
   augroup end
 
-  augroup _alpha
+  augroup _auto_resize
     autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+    autocmd VimResized * tabdo wincmd = 
   augroup end
 
   " disable syntax highlighting in big files
@@ -56,9 +59,4 @@ vim.cmd [[
     autocmd BufWritePre *.ts,*.lua,*.css,*.html,*.tsx,*.js,*.jsx,*.json,*.rs,*.html,*.graphql,*.c,*.md,*.vue :Format
     autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js,*.vue :EslintFixAll
   augroup END
-
-  augroup _formatoptions
-    autocmd!
-    autocmd BufWinEnter * :set formatoptions-=cro
-  augroup end
 ]]
