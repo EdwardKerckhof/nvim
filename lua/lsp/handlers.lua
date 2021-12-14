@@ -80,9 +80,11 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  print(client.name)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
+  if client.name == "volar" then
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
