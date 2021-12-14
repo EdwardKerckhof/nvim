@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-cmdline" }
   use { "hrsh7th/cmp-vsnip" }
   use { "hrsh7th/vim-vsnip" }
+  use { "hrsh7th/cmp-emoji" }
   use {
     "hrsh7th/nvim-cmp",
     config = function()
@@ -163,6 +164,7 @@ return packer.startup(function(use)
   use { -- Projects telescope plugin
     "nvim-telescope/telescope-project.nvim",
   }
+  use { "nvim-telescope/telescope-media-files.nvim" }
   use { -- VSCode like renamer
     "filipdutescu/renamer.nvim",
     branch = "master",
@@ -381,11 +383,11 @@ return packer.startup(function(use)
   --     require("persistence").setup()
   --   end,
   -- }
-  use { 
-    'Shatur/neovim-session-manager' ,
-    config = function ()
+  use {
+    "Shatur/neovim-session-manager",
+    config = function()
       require("plugins.session-manager").setup()
-    end
+    end,
   }
   use { "folke/lsp-colors.nvim" } -- automatic lsp colors
   use { "tpope/vim-surround" } -- Change surroundings
