@@ -6,7 +6,7 @@ M.setup = function()
     return
   end
 
-  local kind = require "user.lsp-kind"
+  local kind = require "user.lsp.lsp-kind"
 
   local header = {
     type = "text",

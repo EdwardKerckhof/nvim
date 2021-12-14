@@ -24,7 +24,7 @@ end
 M.methods.check_backspace = check_backspace
 
 M.setup = function()
-  local lspKind = require "user.lsp-kind"
+  local lspKind = require "user.lsp.lsp-kind"
   local kinds = vim.lsp.protocol.CompletionItemKind
   for i, kind in ipairs(kinds) do
     kinds[i] = lspKind.cmp_kind[kind] or kind

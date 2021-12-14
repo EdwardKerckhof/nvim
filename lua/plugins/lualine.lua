@@ -1,13 +1,9 @@
 -- Lualine (https://github.com/abzcoding/lvim/blob/main/lua/user/lualine.lua)
 local M = {}
-local kind = require "user.lsp-kind"
+local kind = require "user.lsp.lsp-kind"
 
 local function clock()
   return kind.icons.clock .. os.date "%H:%M"
-end
-
-local function hide_in_width()
-  return vim.fn.winwidth(0) > 80
 end
 
 local function lsp_progress()
@@ -236,7 +232,7 @@ M.setup = function()
           c = { fg = colors.fg, bg = colors.bg_alt },
         },
       },
-      disabled_filetypes = { "alpha", "dashboard", "NvimTree", "toggleterm", "quickfix" },
+      disabled_filetypes = { "dashboard", "NvimTree", "Outline", "alpha" },
     },
     sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
     inactive_sections = {
@@ -338,7 +334,7 @@ M.setup = function()
       modified = { fg = colors.git.change },
       removed = { fg = colors.git.delete },
     },
-    color = hide_in_width,
+    color = {},
     cond = nil,
   }
 

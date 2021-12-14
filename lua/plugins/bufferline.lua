@@ -3,16 +3,20 @@ local M = {}
 
 M.setup = function()
   local fn = vim.fn
-  local icons = require("user.lsp-kind").icons
+  local icons = require("user.lsp.lsp-kind").icons
   local function is_ft(b, ft)
     return vim.bo[b].filetype == ft
   end
 
-  local symbols = {error = icons.error, warning = icons.warn, info = icons.info}
+  local symbols = { error = icons.error, warning = icons.warn, info = icons.info }
 
   local function diagnostics_indicator(_, _, diagnostics)
     local result = {}
-    for name, count in pairs(diagnostics) do if symbols[name] and count > 0 then table.insert(result, symbols[name] .. count) end end
+    for name, count in pairs(diagnostics) do
+      if symbols[name] and count > 0 then
+        table.insert(result, symbols[name] .. count)
+      end
+    end
     result = table.concat(result, " ")
     return #result > 0 and result or ""
   end
@@ -21,11 +25,15 @@ M.setup = function()
     local logs = vim.tbl_filter(function(b)
       return is_ft(b, "log")
     end, buf_nums)
-    if vim.tbl_isempty(logs) then return true end
+    if vim.tbl_isempty(logs) then
+      return true
+    end
     local tab_num = vim.fn.tabpagenr()
     local last_tab = vim.fn.tabpagenr "$"
     local is_log = is_ft(buf, "log")
-    if last_tab == 1 then return true end
+    if last_tab == 1 then
+      return true
+    end
     -- only show log buffers in secondary tabs
     return (tab_num == last_tab and is_log) or (tab_num ~= last_tab and not is_log)
   end
@@ -57,52 +65,60 @@ M.setup = function()
       diagnostics_update_in_insert = false,
       custom_filter = custom_filter,
       offsets = {
-        {filetype = "undotree", text = "Undotree", highlight = "PanelHeading", padding = 1},
-        {filetype = "NvimTree", text = "Explorer", highlight = "PanelHeading", padding = 1},
-        {filetype = "DiffviewFiles", text = "Diff View", highlight = "PanelHeading", padding = 1},
-        {filetype = "flutterToolsOutline", text = "Flutter Outline", highlight = "PanelHeading"},
-        {filetype = "packer", text = "Packer", highlight = "PanelHeading", padding = 1}
+        { filetype = "undotree", text = "Undotree", highlight = "PanelHeading", padding = 1 },
+        { filetype = "NvimTree", text = "Explorer", highlight = "PanelHeading", padding = 1 },
+        { filetype = "DiffviewFiles", text = "Diff View", highlight = "PanelHeading", padding = 1 },
+        { filetype = "flutterToolsOutline", text = "Flutter Outline", highlight = "PanelHeading" },
+        { filetype = "packer", text = "Packer", highlight = "PanelHeading", padding = 1 },
       },
       groups = {
-        options = {toggle_hidden_on_enter = true},
+        options = { toggle_hidden_on_enter = true },
         items = {
-          groups.builtin.ungrouped, {
-            highlight = {guisp = "#51AFEF"},
+          groups.builtin.ungrouped,
+          {
+            highlight = { guisp = "#51AFEF" },
             name = "tests",
             icon = icons.test,
             matcher = function(buf)
               return buf.filename:match "_spec" or buf.filename:match "test"
-            end
-          }, {
+            end,
+          },
+          {
             name = "view models",
-            highlight = {guisp = "#03589C"},
+            highlight = { guisp = "#03589C" },
             matcher = function(buf)
               return buf.filename:match "view_model%.dart"
-            end
-          }, {
+            end,
+          },
+          {
             name = "screens",
             icon = icons.screen,
             matcher = function(buf)
               return buf.path:match "screen"
-            end
-          }, {
-            highlight = {guisp = "#C678DD"},
+            end,
+          },
+          {
+            highlight = { guisp = "#C678DD" },
             name = "docs",
             icon = icons.docs,
             matcher = function(buf)
-              local list = List {"md", "txt", "org", "norg", "wiki"}
+              local list = List { "md", "txt", "org", "norg", "wiki" }
               return list:contains(fn.fnamemodify(buf.path, ":e"))
-            end
-          }, {
-            highlight = {guisp = "#F6A878"},
+            end,
+          },
+          {
+            highlight = { guisp = "#F6A878" },
             name = "config",
             matcher = function(buf)
-              return buf.filename:match "go.mod" or buf.filename:match "Cargo.toml" or buf.filename:match "manage.py" or buf.filename:match "Makefile"
-            end
-          }
-        }
-      }
-    }
+              return buf.filename:match "go.mod"
+                or buf.filename:match "Cargo.toml"
+                or buf.filename:match "manage.py"
+                or buf.filename:match "Makefile"
+            end,
+          },
+        },
+      },
+    },
   }
 end
 
