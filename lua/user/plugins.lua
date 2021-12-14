@@ -85,6 +85,12 @@ return packer.startup(function(use)
     end,
   }
 
+   -- DAP
+  use {"mfussenegger/nvim-dap"}
+  use { "theHamsta/nvim-dap-virtual-text" }
+  use {"rcarriga/nvim-dap-ui"}
+  use {"Pocco81/DAPInstall.nvim"}
+
   -- snippets
   use {
     "L3MON4D3/LuaSnip",
