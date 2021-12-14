@@ -1,11 +1,12 @@
 local M = {}
 
 M.setup = function()
+  local lspKind = require "user.lsp.lsp-kind"
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = lspKind.icons.error },
+    { name = "DiagnosticSignWarn", text = lspKind.icons.warn },
+    { name = "DiagnosticSignHint", text = lspKind.icons.hint },
+    { name = "DiagnosticSignInfo", text = lspKind.icons.info },
   }
 
   for _, sign in ipairs(signs) do
