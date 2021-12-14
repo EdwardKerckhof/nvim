@@ -50,6 +50,7 @@ M.setup = function()
         -- NOTE: order matters
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
+          nvim_lua = "[Nvim]",
           luasnip = "[Snippet]",
           buffer = "[Buffer]",
           path = "[Path]",
@@ -64,10 +65,10 @@ M.setup = function()
     },
     sources = {
       { name = "nvim_lsp" },
-      { name = "path" },
-      { name = "luasnip" },
       { name = "nvim_lua" },
+      { name = "luasnip" },
       { name = "buffer" },
+      { name = "path" },
       { name = "emoji" },
       { name = "treesitter" },
     },
