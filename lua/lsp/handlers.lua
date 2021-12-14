@@ -81,10 +81,18 @@ end
 
 M.on_attach = function(client, bufnr)
   print(client.name)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+  local clients_to_skip = {
+    "tsserver",
+    "volar",
+    "stylelint_lsp",
+  }
+
+  for i, c in ipairs(clients_to_skip) do
+    if client.name == c then
+      client.resolved_capabilities.document_formatting = false
+    end
   end
-  if client.name == "volar" then
+
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
