@@ -188,7 +188,8 @@ M.setup = function()
     return
   end
 
-  require("telescope").load_extension "projects"
+  telescope.load_extension "projects"
+  telescope.load_extension "media_files"
 
   telescope.setup(localTS)
 end

@@ -47,8 +47,7 @@ return packer.startup(function(use)
   use { -- Treesitter
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    event = "BufWinEnter",
-    config = function(_)
+    config = function()
       require("plugins.treesitter").setup()
     end,
   }
@@ -85,11 +84,11 @@ return packer.startup(function(use)
     end,
   }
 
-   -- DAP
-  use {"mfussenegger/nvim-dap"}
+  -- DAP
+  use { "mfussenegger/nvim-dap" }
   use { "theHamsta/nvim-dap-virtual-text" }
-  use {"rcarriga/nvim-dap-ui"}
-  use {"Pocco81/DAPInstall.nvim"}
+  use { "rcarriga/nvim-dap-ui" }
+  use { "Pocco81/DAPInstall.nvim" }
 
   -- snippets
   use {
