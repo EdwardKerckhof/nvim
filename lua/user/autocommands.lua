@@ -56,7 +56,7 @@ vim.cmd [[
 
   augroup _autoFormat
     autocmd!
-    autocmd BufWritePre *.ts,*.lua,*.css,*.html,*.tsx,*.js,*.jsx,*.json,*.rs,*.html,*.graphql,*.c,*.md,*.vue :Format
+    autocmd BufWritePre * lua vim.lsp.buf.formatting() 
     autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js,*.vue :EslintFixAll
   augroup END
 ]]
