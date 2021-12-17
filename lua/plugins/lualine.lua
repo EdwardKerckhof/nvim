@@ -232,7 +232,7 @@ M.setup = function()
           c = { fg = colors.fg, bg = colors.bg_alt },
         },
       },
-      disabled_filetypes = { "dashboard", "NvimTree", "Outline", "alpha" },
+      disabled_filetypes = { "dashboard", "NvimTree", "Outline", "alpha", "toggleterm" },
     },
     sections = { lualine_a = {}, lualine_b = {}, lualine_y = {}, lualine_z = {}, lualine_c = {}, lualine_x = {} },
     inactive_sections = {
