@@ -114,3 +114,6 @@ noremap
 nowait
 CMD
 TSConfigInfo
+on
+dracula/!
+dracula
