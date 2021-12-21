@@ -369,7 +369,7 @@ return packer.startup(function(use)
       require("plugins.session-manager").setup()
     end,
   }
-  use "kevinhwang91/nvim-bqf" 
+  use "kevinhwang91/nvim-bqf"
   use "folke/lsp-colors.nvim" -- automatic lsp colors
   use "tpope/vim-surround" -- change surroundings
   use "folke/zen-mode.nvim" -- zen mode
