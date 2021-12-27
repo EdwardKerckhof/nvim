@@ -187,9 +187,10 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use {
-    "folke/tokyonight.nvim",
+    -- "folke/tokyonight.nvim",
+    "tiagovla/tokyodark.nvim",
     config = function()
-      require("plugins.colorscheme").setup()
+      require("plugins.colorscheme").tokyodark()
     end,
   }
 

@@ -136,7 +136,7 @@ local mappings = {
   -- LSP
   l = {
     name = "LSP",
-    a = { "<CMD>Lspsaga code_action<CR>", "Code Action" },
+    a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
     d = { "<CMD>Telescope diagnostics bufnr=0<CR>", "Document Diagnostics" },
     w = { "<CMD>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Workspace Folder" },
     W = { "<CMD>lua vim.lsp.buf.add_workspace_folder()<CR>", "Remove Workspace Folder" },

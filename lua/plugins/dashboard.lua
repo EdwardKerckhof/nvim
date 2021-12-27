@@ -35,14 +35,6 @@ M.setup = function()
     opts = { position = "center", hl = "String" },
   }
 
-  local fortune = require "alpha.fortune"()
-  -- fortune = fortune:gsub("^%s+", ""):gsub("%s+$", "")
-  local footer = {
-    type = "text",
-    val = fortune,
-    opts = { position = "center", hl = "Comment", hl_shortcut = "Comment" },
-  }
-
   local function button(sc, txt, keybind)
     local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
@@ -90,7 +82,6 @@ M.setup = function()
     buttons = buttons,
     plugin_count = plugin_count,
     heading = heading,
-    footer = footer,
   }
 
   local opts = {
@@ -108,6 +99,17 @@ M.setup = function()
     },
     opts = { margin = 5 },
   }
+
+  -- Add color to header
+  if vim.api.nvim_buf_get_name(0) == "" then
+    vim.api.nvim_buf_set_option(0, "bufhidden", "wipe")
+
+    vim.schedule(function()
+      vim.fn.matchadd("Error", "[░▒]")
+      vim.fn.matchadd("Function", "[▓█▄▀▐▌]")
+    end)
+  end
+
   alpha.setup(opts)
 end
 

@@ -159,8 +159,8 @@ local function get_file_icon_color()
 end
 
 local default_colors = {
-  bg = "#202328",
-  bg_alt = "#202328",
+  bg = "#11121D",
+  bg_alt = "#11121D",
   fg = "#bbc2cf",
   yellow = "#ECBE7B",
   cyan = "#008080",
