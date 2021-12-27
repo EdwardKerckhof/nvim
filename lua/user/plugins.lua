@@ -196,10 +196,9 @@ return packer.startup(function(use)
 
   -- Bufferline/Statusline
   use {
-    "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    "tamton-aquib/staline.nvim",
     config = function()
-      require("plugins.lualine").setup()
+      require("plugins.staline").setup()
     end,
   }
   use {
