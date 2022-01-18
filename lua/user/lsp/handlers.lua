@@ -14,9 +14,7 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
-    virtual_text = true,
-    -- show signs
+    virtual_text = false,
     signs = {
       active = signs,
     },
@@ -72,7 +70,7 @@ local function lsp_keymaps(bufnr)
     bufnr,
     "n",
     "gl",
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
+    '<cmd>lua vim.lsp.diagnostic.open_float({ border = "rounded" })<CR>',
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -86,6 +84,7 @@ M.on_attach = function(client, bufnr)
     "tsserver",
     "volar",
     "stylelint_lsp",
+    "jsonls",
   }
 
   for _, c in ipairs(clients_to_skip) do

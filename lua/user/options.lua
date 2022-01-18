@@ -39,9 +39,6 @@ local options = {
 
 vim.opt.shortmess:append "c"
 
--- Notifications
-vim.notify = require "notify"
-
 for k, v in pairs(options) do
   vim.opt[k] = v
 end

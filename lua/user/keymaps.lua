@@ -48,7 +48,7 @@ keymap("n", "<ESC><ESC>", ":nohlsearch<CR>", opts)
 keymap("n", "<C-s>", ":w<CR>", opts) -- Alternative way of saving a file
 keymap("n", "<C-q>", ":bd<CR>", opts) -- Close buffer
 keymap("n", "<C-o>", ":RnvimrToggle<CR>", opts) -- Toggle ranger
-keymap("n", "<C-p>", ":Telescope find_files prompt_prefix=🔍<CR>", opts) -- CTRL-P with telescope
+keymap("n", "<C-p>", ":Telescope find_files hidden=true prompt_prefix=🔍<CR>", opts) -- CTRL-P with telescope
 keymap("n", "<C-f>", ":lua require('spectre').open_file_search()<CR>", opts) -- Spectre file search
 keymap("n", "<C-g>", ":w<CR>", opts) -- Open git fugitive
 

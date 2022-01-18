@@ -109,9 +109,8 @@ M.config = function()
       color_devicons = true,
       set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
       pickers = {
-        find_files = { find_command = { "fd", "--type=file", "--smart-case" }, pickers = { hidden = true } },
+        find_files = { find_command = { "fd", "--type=file", "--smart-case" }, hidden = true },
         live_grep = {
-          -- @usage don't include the filename in the search results
           only_sort_text = true,
         },
       },
@@ -124,8 +123,6 @@ M.config = function()
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
       media_files = {
-        -- filetypes whitelist
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
         filetypes = { "png", "webp", "jpg", "jpeg" },
         find_cmd = "rg", -- find command (defaults to `fd`)
       },

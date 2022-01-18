@@ -350,13 +350,6 @@ return packer.startup(function(use)
     cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
     keys = "<leader>?",
   }
-  use { -- yarn / npm package info and manager
-    "vuki656/package-info.nvim",
-    requires = "MunifTanjim/nui.nvim",
-    config = function()
-      require("plugins.package-info").setup()
-    end,
-  }
   use { -- impatient
     "lewis6991/impatient.nvim",
     config = function()
@@ -374,7 +367,6 @@ return packer.startup(function(use)
   use "tpope/vim-surround" -- change surroundings
   use "folke/zen-mode.nvim" -- zen mode
   use "tpope/vim-repeat" -- repeat with '.'
-  use "rcarriga/nvim-notify" -- notifications
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
