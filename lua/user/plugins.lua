@@ -268,7 +268,7 @@ return packer.startup(function(use)
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      require("plugins.dashboard").setup()
+      require("plugins.alpha").setup()
     end,
   }
   use { -- Indent blankline

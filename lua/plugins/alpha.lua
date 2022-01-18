@@ -1,11 +1,11 @@
+local present, alpha = pcall(require, "alpha")
+if not present then
+  return
+end
+
 local M = {}
 
 M.setup = function()
-  local present, alpha = pcall(require, "alpha")
-  if not present then
-    return
-  end
-
   local kind = require "user.lsp.lsp-kind"
 
   local header = {
@@ -69,7 +69,6 @@ M.setup = function()
       button("f", " " .. kind.cmp_kind.Folder .. " Explore", ":Telescope find_files<CR>"),
       button("e", " " .. kind.cmp_kind.File .. " New file", ":ene <BAR> startinsert <CR>"),
       button("p", " " .. kind.cmp_kind.Module .. " Projects", ":Telescope projects<CR>"),
-      button("s", " " .. kind.icons.magic .. " Sessions", ":Telescope sessions save_current=false<CR>"),
       button("r", " " .. kind.icons.clock .. " Recents", ":Telescope oldfiles<CR>"),
       button("c", " " .. kind.icons.settings .. " Config", ":e ~/.config/nvim/init.lua<CR>"),
       button("q", " " .. kind.icons.exit .. " Quit", ":qa<CR>"),
