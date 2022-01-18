@@ -58,6 +58,20 @@ return packer.startup(function(use)
       require("plugins.cmp").setup()
     end,
   }
+  use {
+    "tzachar/cmp-tabnine",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+      }
+    end,
+
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  }
 
   -- Snippets
   use {
@@ -367,6 +381,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround" -- change surroundings
   use "folke/zen-mode.nvim" -- zen mode
   use "tpope/vim-repeat" -- repeat with '.'
+  use "b0o/SchemaStore.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

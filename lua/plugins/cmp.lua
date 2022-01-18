@@ -46,6 +46,10 @@ M.setup = function()
       format = function(entry, vim_item)
         -- Kind icons
         vim_item.kind = string.format("%s", lspKind.cmp_kind[vim_item.kind])
+
+        if entry.source.name == "cmp_tabnine" then
+          vim_item.kind = " "
+        end
         -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         -- NOTE: order matters
         vim_item.menu = ({
@@ -53,6 +57,7 @@ M.setup = function()
           nvim_lua = "[Nvim]",
           luasnip = "[Snippet]",
           buffer = "[Buffer]",
+          cmp_tabnine = "[Tabnine]",
           path = "[Path]",
           emoji = "[Emoji]",
         })[entry.source.name]
