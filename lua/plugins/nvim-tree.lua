@@ -12,7 +12,7 @@ M.setup = function()
   vim.g.nvim_tree_quit_on_open = 1
   vim.g.nvim_tree_git_hl = 1
   vim.g.nvim_tree_highlight_opened_files = 1
-  vim.g.nvim_tree_respect_buf_cwd = 1
+  vim.g.nvim_tree_respect_buf_cwd = 0
   vim.g.nvim_tree_icons = kind.nvim_tree_icons
 
   vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", { noremap = true, silent = true })
@@ -31,6 +31,7 @@ M.setup = function()
     open_on_setup = false,
     ignore_ft_on_setup = { "startify", "dashboard", "alpha" },
     auto_close = true,
+    auto_reload_on_write = true,
     update_to_buf_dir = { enable = true, auto_open = true },
     update_cwd = true,
     update_focused_file = { enable = true, update_cwd = true },

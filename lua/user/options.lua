@@ -33,7 +33,7 @@ local options = {
   scrolloff = 8, -- scroll offset (8 lines)
   sidescrolloff = 8,
   guifont = "JetBrains Mono Nerd Font:h13", -- the font used in graphical neovim applications
-  spell = true,
+  spell = false,
   spelllang = "en",
 }
 

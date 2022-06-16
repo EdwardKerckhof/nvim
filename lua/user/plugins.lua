@@ -45,6 +45,15 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "kyazdani42/nvim-web-devicons" -- Web devicons needed for a lot of plugins
 
+  use {
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    end,
+  }
+
   -- CMP
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
@@ -52,6 +61,16 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-emoji"
+  use {
+    "fatih/vim-go",
+    config = function()
+      vim.g.go_def_mapping_enabled = 0
+      vim.g.go_metalinter_enabled = 0
+      vim.g.go_fmt_autosave = 0
+      vim.g.go_mod_fmt_autosave = 0
+      vim.g.go_asmfmt_autosave = 0
+    end,
+  }
   use {
     "hrsh7th/nvim-cmp",
     config = function()
@@ -89,6 +108,7 @@ return packer.startup(function(use)
   use "onsails/lspkind-nvim"
   use "tamago324/nlsp-settings.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
+  use "folke/lsp-colors.nvim" -- automatic lsp colors
   use {
     "filipdutescu/renamer.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -144,6 +164,7 @@ return packer.startup(function(use)
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    commit = "668de0951a36ef17016074f1120b6aacbe6c4515",
     run = ":TSUpdate",
     config = function()
       require("plugins.treesitter").setup()
@@ -169,12 +190,12 @@ return packer.startup(function(use)
       require("plugins.autopairs").setup()
     end,
   }
-  use {
-    "lewis6991/spellsitter.nvim",
-    config = function()
-      require("plugins.spellsitter").setup()
-    end,
-  }
+  -- use {
+  --   "lewis6991/spellsitter.nvim",
+  --   config = function()
+  --     require("plugins.spellsitter").setup()
+  --   end,
+  -- }
 
   -- GIT
   use {
@@ -224,14 +245,18 @@ return packer.startup(function(use)
   }
 
   -- DAP
-  use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "rcarriga/nvim-dap-ui"
-  use "Pocco81/DAPInstall.nvim"
+  -- use "mfussenegger/nvim-dap"
+  -- use "theHamsta/nvim-dap-virtual-text"
+  -- use "rcarriga/nvim-dap-ui"
+  -- use "Pocco81/DAPInstall.nvim"
+  --
+  -- Vimspector
+  -- use "puremourning/vimspector"
 
   use { -- file tree explorer
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
+    commit = "99d65afd6ef05cc57f835451126e5c44db03cef1",
     config = function()
       require("plugins.nvim-tree").setup()
     end,
@@ -327,6 +352,7 @@ return packer.startup(function(use)
   }
   use { -- match brackets
     "andymass/vim-matchup",
+    commit = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
     event = "CursorMoved",
     config = function()
       require("plugins.matchup").setup()
@@ -376,8 +402,28 @@ return packer.startup(function(use)
       require("plugins.session-manager").setup()
     end,
   }
+  use {
+    "vimwiki/vimwiki",
+    branch = "dev",
+    config = function()
+      vim.g.vimwiki_global_ext = 0
+      vim.g.vimwiki_markdown_link_ext = 1
+      vim.g.vimwiki_list = {
+        {
+          path = "~/notes",
+          syntax = "markdown",
+          ext = ".md",
+          template_path = "~/notes/templates/",
+          template_default = "default",
+          path_html = "~/notes/site_html/",
+          custom_wiki2html = "vimwiki_markdown",
+          html_filename_parameterization = 1,
+          template_ext = ".tpl",
+        },
+      }
+    end,
+  }
   use "kevinhwang91/nvim-bqf"
-  use "folke/lsp-colors.nvim" -- automatic lsp colors
   use "tpope/vim-surround" -- change surroundings
   use "folke/zen-mode.nvim" -- zen mode
   use "tpope/vim-repeat" -- repeat with '.'

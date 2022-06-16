@@ -80,7 +80,6 @@ local opts = {
 }
 
 local mappings = {
-  ["w"] = { "<CMD>w!<CR>", "Save" },
   ["z"] = { "<CMD>ZenMode<CR>", "Zen" },
   ["q"] = { "<CMD>q!<CR>", "Quit" },
   ["/"] = { "<CMD>lua require('Comment.api').toggle()<CR>", "Comment" },
@@ -208,11 +207,12 @@ local mappings = {
 
   -- Tests jester
   j = {
-    name = "Jester",
+    name = "Tests Jester/Go",
     d = { "<CMD>lua require('jester').debug_file({ path_to_jest = '/usr/bin/jest' })<CR>", "Debug File" },
     f = { "<CMD>lua require('jester').run_file()<CR>", "Test File" },
-    t = { "<CMD>lua require('jester').run()<CR>", "Test Nearest" },
+    n = { "<CMD>lua require('jester').run()<CR>", "Test Nearest" },
     l = { "<CMD>lua require('jester').run_last()<CR>", "Test Last" },
+    t = { "<CMD>GoCoverageToggle<CR>", "Toggle Go Code Coverage" },
   },
 
   -- Trouble
