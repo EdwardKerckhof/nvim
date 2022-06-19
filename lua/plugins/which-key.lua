@@ -200,9 +200,17 @@ local mappings = {
     o = { "<CMD>lua require'dap'.step_over()<cr>", "Step Over" },
     u = { "<CMD>lua require'dap'.step_out()<cr>", "Step Out" },
     p = { "<CMD>lua require'dap'.pause.toggle()<cr>", "Pause" },
-    r = { "<CMD>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+    r = { "<CMD>lua require'dap'.repl.toggle({}, 'vsplit')<cr>", "Toggle Repl" },
+    R = { "<CMD>lua require'dap'.clear_breakpoints()<cr>", "Clear breakpoints" },
     s = { "<CMD>lua require'dap'.continue()<cr>", "Start" },
-    q = { "<CMD>lua require'dap'.close()<cr>", "Quit" },
+    S = {
+      function()
+        local widgets = require "dap.ui.widgets"
+        widgets.centered_float(widgets.scopes)
+      end,
+      "Scope",
+    },
+    q = { "<CMD>lua require'dap'.terminate()<cr>", "Quit" },
   },
 
   -- Tests jester
