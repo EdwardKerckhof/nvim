@@ -8,6 +8,8 @@ M.setup = function()
   vim.fn.sign_define("DapBreakpointRejected", { text = "🟦", texthl = "", linehl = "", numhl = "" })
   vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", numhl = "" })
 
+  require("nvim-dap-virtual-text").setup()
+
   dap.adapters.node2 = {
     type = "executable",
     command = "node",

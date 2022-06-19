@@ -249,6 +249,7 @@ return packer.startup(function(use)
       require("dap.debuggers").setup()
     end,
   }
+  use "theHamsta/nvim-dap-virtual-text"
   use "rcarriga/nvim-dap-ui"
   use "Pocco81/DAPInstall.nvim"
   --
