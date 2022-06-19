@@ -54,6 +54,8 @@ return packer.startup(function(use)
     end,
   }
 
+  use "RRethy/vim-illuminate"
+
   -- CMP
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
@@ -93,12 +95,7 @@ return packer.startup(function(use)
   }
 
   -- Snippets
-  use {
-    "L3MON4D3/LuaSnip",
-    config = function()
-      require("luasnip/loaders/from_vscode").lazy_load()
-    end,
-  }
+  use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
   use "rafamadriz/friendly-snippets"
 
@@ -160,6 +157,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-fzf-native.nvim"
   use "nvim-telescope/telescope-project.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
+  use "nvim-telescope/telescope-dap.nvim"
 
   -- Treesitter
   use {
@@ -245,10 +243,14 @@ return packer.startup(function(use)
   }
 
   -- DAP
-  -- use "mfussenegger/nvim-dap"
-  -- use "theHamsta/nvim-dap-virtual-text"
-  -- use "rcarriga/nvim-dap-ui"
-  -- use "Pocco81/DAPInstall.nvim"
+  use {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("dap.debuggers").setup()
+    end,
+  }
+  use "rcarriga/nvim-dap-ui"
+  use "Pocco81/DAPInstall.nvim"
   --
   -- Vimspector
   -- use "puremourning/vimspector"
@@ -328,14 +330,6 @@ return packer.startup(function(use)
       require("plugins.dial").setup()
     end,
   }
-  use { -- markdown preview
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    ft = "markdown",
-    config = function()
-      require "plugins.markdown-preview"
-    end,
-  }
   use { -- neoscroll smooth scroll
     "karb94/neoscroll.nvim",
     event = "BufRead",
@@ -356,13 +350,6 @@ return packer.startup(function(use)
     event = "CursorMoved",
     config = function()
       require("plugins.matchup").setup()
-    end,
-  }
-  use { -- underline word under cursor
-    "itchyny/vim-cursorword",
-    event = { "BufEnter", "BufNewFile" },
-    config = function()
-      require("plugins.cursorword").setup()
     end,
   }
   use { -- open urls with gx

@@ -22,11 +22,6 @@ vim.cmd [[
     autocmd VimResized * tabdo wincmd = 
   augroup end
 
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-
   " disable syntax highlighting in big files
   function! DisableSyntaxTreesitter()
     echo("Big file, disabling syntax, treesitter and folding")
@@ -55,5 +50,10 @@ vim.cmd [[
     autocmd BufWritePre *.lua,*.go,*.ts,*.css,*.html,*.tsx,*.js,*.vue,*.svelte,*.cjs lua vim.lsp.buf.formatting() 
     autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js,*.vue :EslintFixAll
     autocmd BufWritePost * :w
+  augroup END
+
+  augroup _buildNote
+    autocmd!
+    autocmd BufWritePost *note-*.md silent !/home/edward/.local/bin/build-note %:p
   augroup END
 ]]

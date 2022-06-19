@@ -52,11 +52,12 @@ M.setup = function()
         -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         -- NOTE: order matters
         vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[Nvim]",
+          copilot = "[Copilot]",
           luasnip = "[Snippet]",
-          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
           cmp_tabnine = "[TN]",
+          nvim_lua = "[Nvim]",
+          buffer = "[Buffer]",
           path = "[Path]",
           emoji = "[Emoji]",
         })[entry.source.name]
@@ -68,9 +69,10 @@ M.setup = function()
       select = false,
     },
     sources = {
+      { name = "luasnip" },
+      { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "cmp_tabnine" },
-      { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
       { name = "nvim_lua" },

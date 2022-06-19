@@ -57,6 +57,8 @@ keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
 keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
+keymap("n", "<A-n>", "<cmd>lua require'illuminate'.next_reference{wrap=true}<cr>", opts)
+keymap("n", "<A-p>", "<cmd>lua require'illuminate'.next_reference{reverse=true,wrap=true}<cr>", opts)
 
 -- Insert --
 -- Press jk or kj fast to enter
