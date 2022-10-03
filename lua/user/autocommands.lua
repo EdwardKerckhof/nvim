@@ -47,7 +47,7 @@ vim.cmd [[
 
   augroup _autoFormat
     autocmd!
-    autocmd BufWritePre *.lua,*.go,*.ts,*.css,*.html,*.tsx,*.js,*.vue,*.svelte,*.cjs lua vim.lsp.buf.formatting() 
+    autocmd BufWritePre *.lua,*.go,*.css,*.html,*.tsx,*.js,*.ts,*.vue,*.svelte,*.cjs,*.prisma lua vim.lsp.buf.formatting() 
     autocmd BufWritePre *.ts,*.css,*.html,*.tsx,*.js,*.vue :EslintFixAll
     autocmd BufWritePost * :w
   augroup END

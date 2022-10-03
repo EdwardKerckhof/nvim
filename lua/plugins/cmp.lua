@@ -53,9 +53,9 @@ M.setup = function()
         -- NOTE: order matters
         vim_item.menu = ({
           copilot = "[Copilot]",
-          luasnip = "[Snippet]",
           nvim_lsp = "[LSP]",
           cmp_tabnine = "[TN]",
+          luasnip = "[Snippet]",
           nvim_lua = "[Nvim]",
           buffer = "[Buffer]",
           path = "[Path]",
@@ -69,10 +69,10 @@ M.setup = function()
       select = false,
     },
     sources = {
-      { name = "luasnip" },
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "cmp_tabnine" },
+      { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
       { name = "nvim_lua" },

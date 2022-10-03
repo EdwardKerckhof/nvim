@@ -9,6 +9,7 @@ M.setup = function()
   vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", numhl = "" })
 
   require("nvim-dap-virtual-text").setup()
+  require("dapui").setup()
 
   dap.adapters.node2 = {
     type = "executable",

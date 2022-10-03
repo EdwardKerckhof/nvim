@@ -201,6 +201,7 @@ local mappings = {
     l = { "<CMD>Telescope dap list_breakpoints<cr>", "List breakpoints" },
     o = { "<CMD>lua require'dap'.step_over()<cr>", "Step Over" },
     u = { "<CMD>lua require'dap'.step_out()<cr>", "Step Out" },
+    U = { "<CMD>lua require'dapui'.toggle()<cr>", "Dap UI" },
     p = { "<CMD>lua require'dap'.pause.toggle()<cr>", "Pause" },
     r = { "<CMD>lua require'dap'.repl.toggle({}, 'vsplit')<cr>", "Toggle Repl" },
     R = { "<CMD>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
@@ -223,15 +224,6 @@ local mappings = {
     n = { "<CMD>lua require('jester').run()<CR>", "Test Nearest" },
     l = { "<CMD>lua require('jester').run_last()<CR>", "Test Last" },
     t = { "<CMD>GoCoverageToggle<CR>", "Toggle Go Code Coverage" },
-  },
-
-  -- Trouble
-  t = {
-    name = "Trouble",
-    t = { "<CMD>TroubleToggle<CR>", "Toggle" },
-    w = { "<CMD>TroubleToggle workspace_diagnostics<CR>", "Workspace Diagnostics" },
-    d = { "<CMD>TroubleToggle document_diagnostics<CR>", "Document Diagnostics" },
-    f = { "<CMD>TroubleToggle quickfix<CR>", "Quickfix" },
   },
 
   -- Package info

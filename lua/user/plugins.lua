@@ -132,12 +132,12 @@ return packer.startup(function(use)
       require("plugins.lsp-signature").setup()
     end,
   }
-  use {
-    "tami5/lspsaga.nvim",
-    config = function()
-      require("plugins.lspsaga").setup()
-    end,
-  }
+  -- use {
+  --   "tami5/lspsaga.nvim",
+  --   config = function()
+  --     require("plugins.lspsaga").setup()
+  --   end,
+  -- }
 
   -- Telescope
   use {
